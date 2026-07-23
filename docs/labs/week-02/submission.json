@@ -1,16 +1,16 @@
 {
   "week": "week-02",
-  "title": "Modern JavaScript Learning Dashboard",
-  "status": "draft",
-  "sourceOrigin": "course-starter",
-  "originalRepoUrl": "",
-  "originalCommit": "",
+  "title": "Modern JavaScript & Vite Setup",
+  "status": "ready",
+  "sourceOrigin": "migrated-repository",
+  "originalRepoUrl": "https://github.com/wijitsinfangyen/engse203-lab02-68543210068-1",
+  "originalCommit": "4486ce0",
   "pullRequestUrl": "",
-  "submissionTag": "",
-  "testStatus": "not-tested",
-  "notes": "นำ Vite build output ที่มี index.html เข้า publish/",
+  "submissionTag": "lab-02-submission-v1",
+  "testStatus": "pass",
+  "notes": "Migrated LAB 02 successfully.",
   "pageUrl": "https://wijitsinfangyen.github.io/engse203-student-labs-68543210068/labs/week-02/",
   "sourceUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab/week-02/labs/week-02/source",
-  "hasPublish": false,
-  "sourceEntries": 0
+  "hasPublish": true,
+  "sourceEntries": 11
 }
