@@ -34,11 +34,11 @@
   {
     "week": "week-03",
     "title": "Responsive Web UI & Form Interaction",
-    "status": "ready",
+    "status": "submitted",
     "sourceOrigin": "migrated-repository",
     "originalRepoUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068",
     "originalCommit": "94a551f30a76d053b37e27ea4fac364664e09fd9",
-    "pullRequestUrl": "",
+    "pullRequestUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/pull/3",
     "submissionTag": "lab-03-submission-v1",
     "testStatus": "pass",
     "notes": "Completed responsive web UI and form interaction",
@@ -61,6 +61,6 @@
     "pageUrl": "https://wijitsinfangyen.github.io/engse203-student-labs-68543210068/labs/week-04/",
     "sourceUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab/week-04/labs/week-04/source",
     "hasPublish": true,
-    "sourceEntries": 11
+    "sourceEntries": 12
   }
 ]
