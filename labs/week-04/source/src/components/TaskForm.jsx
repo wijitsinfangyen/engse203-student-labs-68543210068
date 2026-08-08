@@ -1,103 +1,94 @@
 import { useState } from 'react';
 
-const categories = [
-  { value: '', label: 'เลือกหมวดหมู่' },
-  { value: 'reading', label: 'Reading' },
-  { value: 'coding', label: 'Coding' },
-  { value: 'review', label: 'Review' },
-];
+const initialFormData = {
+  title: '',
+  category: '',
+  priority: 'normal',
+};
 
-const priorities = [
-  { value: 'normal', label: 'ปกติ' },
-  { value: 'high', label: 'สำคัญ' },
-];
+function validateTask(formData) {
+  const errors = {};
+
+  if (formData.title.trim().length < 3) {
+    errors.title = 'กรุณาระบุชื่องานอย่างน้อย 3 ตัวอักษร';
+  }
+
+  if (!formData.category) {
+    errors.category = 'กรุณาเลือกประเภทงาน';
+  }
+
+  return errors;
+}
 
 function TaskForm({ onAddTask }) {
-  const [formData, setFormData] = useState({ title: '', category: '', priority: 'normal' });
+  const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
-  const [statusMessage, setStatusMessage] = useState('');
+  const [feedback, setFeedback] = useState('');
 
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((current) => ({ ...current, [name]: value }));
-
-    if (errors[name]) {
-      setErrors((current) => ({ ...current, [name]: '' }));
-    }
-    setStatusMessage('');
-  }
-
-  function validate() {
-    const nextErrors = {};
-
-    if (!formData.title.trim() || formData.title.trim().length < 3) {
-      nextErrors.title = 'หัวเรื่องต้องมีอย่างน้อย 3 ตัวอักษร';
-    }
-
-    if (!formData.category) {
-      nextErrors.category = 'กรุณาเลือกหมวดหมู่';
-    }
-
-    return nextErrors;
+    setErrors((current) => ({ ...current, [name]: '' }));
+    setFeedback('');
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    const nextErrors = validate();
+    const nextErrors = validateTask(formData);
+    setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
-      setStatusMessage('กรุณาแก้ไขข้อผิดพลาดก่อนส่ง');
+      setFeedback('ยังเพิ่มงานไม่ได้ กรุณาตรวจข้อมูลที่ระบุ');
       return;
     }
 
-    const newTask = {
+    onAddTask({
+      ...formData,
       title: formData.title.trim(),
-      category: formData.category,
-      priority: formData.priority,
-    };
-
-    onAddTask(newTask);
-    setFormData({ title: '', category: '', priority: 'normal' });
-    setErrors({});
-    setStatusMessage('เพิ่มงานเรียบร้อยแล้ว');
+    });
+    setFormData(initialFormData);
+    setFeedback('เพิ่มงานใหม่เรียบร้อยแล้ว');
   }
 
   return (
     <section className="panel" aria-labelledby="task-form-title">
-      <div className="section-heading">
-        <h2 id="task-form-title">เพิ่มงาน</h2>
-      </div>
+      <p className="eyebrow dark">CONTROLLED FORM</p>
+      <h2 id="task-form-title">เพิ่มงานฝึก</h2>
+
       <form onSubmit={handleSubmit} noValidate>
         <div className="field">
-          <label htmlFor="title">หัวเรื่อง</label>
+          <label htmlFor="title">ชื่องาน</label>
           <input
             id="title"
             name="title"
-            type="text"
             value={formData.title}
             onChange={handleChange}
             aria-invalid={Boolean(errors.title)}
+            aria-describedby="title-error"
           />
-          <p className="error" role="status">{errors.title || ''}</p>
+          <small className="error" id="title-error">
+            {errors.title}
+          </small>
         </div>
 
         <div className="field">
-          <label htmlFor="category">หมวดหมู่</label>
+          <label htmlFor="category">ประเภท</label>
           <select
             id="category"
             name="category"
             value={formData.category}
             onChange={handleChange}
             aria-invalid={Boolean(errors.category)}
+            aria-describedby="category-error"
           >
-            {categories.map((item) => (
-              <option key={item.value} value={item.value}>
-                {item.label}
-              </option>
-            ))}
+            <option value="">-- เลือกประเภท --</option>
+            <option value="reading">อ่าน/ทบทวน</option>
+            <option value="coding">เขียนโค้ด</option>
+            <option value="review">ตรวจและอธิบาย</option>
           </select>
-          <p className="error" role="status">{errors.category || ''}</p>
+          <small className="error" id="category-error">
+            {errors.category}
+          </small>
         </div>
 
         <div className="field">
@@ -108,16 +99,15 @@ function TaskForm({ onAddTask }) {
             value={formData.priority}
             onChange={handleChange}
           >
-            {priorities.map((item) => (
-              <option key={item.value} value={item.value}>
-                {item.label}
-              </option>
-            ))}
+            <option value="normal">ปกติ</option>
+            <option value="high">สำคัญ</option>
           </select>
         </div>
 
-        <p className="status" role="status">{statusMessage}</p>
-        <button type="submit">เพิ่มงานใหม่</button>
+        <button type="submit">เพิ่มงาน</button>
+        <p className="status" role="status">
+          {feedback}
+        </p>
       </form>
     </section>
   );
