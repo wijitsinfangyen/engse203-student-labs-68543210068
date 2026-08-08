@@ -1,19 +1,26 @@
-import RequestCard from './RequestCard';
+import RequestCard from './RequestCard.jsx';
 
-export default function RequestList({ requests, onDelete }) {
+function RequestList({ requests, onDeleteRequest }) {
   if (requests.length === 0) {
     return (
       <div className="empty-state">
-        <p>ไม่พบรายการคำร้องบริการ</p>
+        <p>ไม่มีคำร้องในหมวดหมู่นี้</p>
       </div>
     );
   }
 
   return (
     <div className="request-list">
-      {requests.map(request => (
-        <RequestCard key={request.id} request={request} onDelete={onDelete} />
+      {requests.map((request) => (
+        <RequestCard
+          key={request.id}
+          request={request}
+          onDeleteRequest={onDeleteRequest}
+        />
       ))}
     </div>
   );
 }
+
+export default RequestList;
+
