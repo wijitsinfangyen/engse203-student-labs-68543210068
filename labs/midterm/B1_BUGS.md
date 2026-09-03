@@ -37,7 +37,7 @@
 | 3 | กดตัวกรองสถานะใด ๆ แล้วผลไม่เปลี่ยน (เหมือนกรองไม่ทำงาน) | DashboardPage.jsx | string คงที่ 'pending' แทนที่จะเทียบกับตัวแปร statusFilter | เปลี่ยนเป็น statusFilter |
 | 4 | เปลี่ยน URL `REQ-101` → `REQ-102` แล้วข้อมูลไม่เปลี่ยน | RequestDetailPage.jsx | array ว่างเปล่า [] | เพิ่ม requestID |
 | 5 | กด "ลบ" แล้วการ์ดหาย แต่ตัวเลขในแผงสรุปไม่ลด | DashboardPage.jsx | ไม่ recompute เมื่อ requests เปลี่ยนหลังลบข้อมูล | เพิ่ม requests |
-| 6 | กด "ลบ" แล้วหน้าพัง/ว่างเปล่า |  |  |  |
+| 6 | กด "ลบ" แล้วหน้าพัง/ว่างเปล่า | DashboardPage.jsx | มื่อลบจนหมด requests.length === 0 ต้อง trigger re-render ให้แสดง empty state ได้ถูกต้อง | เพิ่ม requests  |
 
 ---
 
