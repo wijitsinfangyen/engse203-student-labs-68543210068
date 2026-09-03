@@ -35,7 +35,7 @@
 | 1 | Console เตือนสีเหลืองเรื่องรายการ (list) ที่แผงสรุป | SummaryPanel.jsx | ไม่มี key prop ให้ children ที่ React สร้างจาก loop | เพิ่ม key={key} |
 | 2 | ตัวเลข "เสร็จสิ้น" ในแผงสรุปไม่ตรงกับที่เห็นจริง | DashboardPage.jsx | สาเหตุ 2 อย่าง: filter เงื่อนไข completed ผิด + useMemo dependency array ว่างเปล่า | เปลี่ยนเป็น 'completed' และเพิ่ม requests |
 | 3 | กดตัวกรองสถานะใด ๆ แล้วผลไม่เปลี่ยน (เหมือนกรองไม่ทำงาน) | DashboardPage.jsx | string คงที่ 'pending' แทนที่จะเทียบกับตัวแปร statusFilter | เปลี่ยนเป็น statusFilter |
-| 4 | เปลี่ยน URL `REQ-101` → `REQ-102` แล้วข้อมูลไม่เปลี่ยน |  |  |  |
+| 4 | เปลี่ยน URL `REQ-101` → `REQ-102` แล้วข้อมูลไม่เปลี่ยน | RequestDetailPage.jsx | array ว่างเปล่า [] | เพิ่ม requestID |
 | 5 | กด "ลบ" แล้วการ์ดหาย แต่ตัวเลขในแผงสรุปไม่ลด |  |  |  |
 | 6 | กด "ลบ" แล้วหน้าพัง/ว่างเปล่า |  |  |  |
 
