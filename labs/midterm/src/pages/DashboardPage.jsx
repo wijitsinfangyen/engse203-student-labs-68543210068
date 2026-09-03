@@ -63,10 +63,20 @@ function DashboardPage() {
       || request.location.toLowerCase().includes(query)
     );
   });
-  
+
   function handleRetry() {
     if (scenario) setSearchParams({});
     else reload();
+  }
+
+async function handleAcknowledge(requestId) {
+    try {
+      const nextRequests = await updateRequestStatus(requestId, 'in-progress');
+      setRequests(nextRequests);
+      setNotice(`รับเรื่อง ${requestId} แล้ว`);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'อัปเดตสถานะไม่สำเร็จ');
+    }
   }
 
   async function handleDelete(requestId) {
@@ -124,7 +134,7 @@ function DashboardPage() {
   onChange={(e) => setSearchText(e.target.value)}
 />
             {/* TODO B3: ส่ง onAcknowledge={handleAcknowledge} ให้ RequestList เพื่อให้การ์ด pending มีปุ่ม "รับเรื่อง" */}
-            <RequestList requests={filteredRequests} onDeleteRequest={handleDelete} />
+            <RequestList requests={filteredRequests} onDeleteRequest={handleDelete} onAcknowledge={handleAcknowledge} />
           </section>
         </>
       )}
