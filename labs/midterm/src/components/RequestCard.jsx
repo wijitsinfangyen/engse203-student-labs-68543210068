@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import StatusBadge from './StatusBadge.jsx';
 
 function RequestCard({ request, onDeleteRequest, onAcknowledge }) {
   return (
@@ -9,15 +10,16 @@ function RequestCard({ request, onDeleteRequest, onAcknowledge }) {
         <p>{request.location}</p>
         <p>{request.details}</p>
         {/* TODO B4: แทน <span> สถานะดิบด้านล่างด้วย <StatusBadge status={request.status} /> ที่คุณสร้าง */}
-        <p><span className={`badge ${request.status}`}>{request.status}</span> · {request.priority}</p>
+        <p><StatusBadge status={request.status} /> · {request.priority}</p>
       </div>
       <div className="request-card-actions">
+      
         {/* TODO B3: เพิ่มปุ่ม "รับเรื่อง" ที่แสดงเฉพาะการ์ดสถานะ pending (เรียก onAcknowledge) */}
         {request.status === 'pending' && (
-  <button className="button primary" type="button" onClick={() => onAcknowledge(request.id)} aria-label={`รับเรื่อง ${request.id}`}>
-    รับเรื่อง
-  </button>
-)}
+          <button className="button primary" type="button" onClick={() => onAcknowledge(request.id)} aria-label={`รับเรื่อง ${request.id}`}>
+            รับเรื่อง
+          </button>
+        )}
         <button className="button danger" type="button" onClick={() => onDeleteRequest(request.id)} aria-label={`ลบคำร้อง ${request.id}`}>
           ลบ
         </button>
