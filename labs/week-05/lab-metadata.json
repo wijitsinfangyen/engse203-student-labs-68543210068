@@ -1,12 +1,12 @@
 {
   "week": "week-05",
   "title": "React Routing Data Fetching Mini App",
-  "status": "draft",
+  "status": "submitted",
   "sourceOrigin": "course-starter",
   "originalRepoUrl": "",
   "originalCommit": "",
   "pullRequestUrl": "",
   "submissionTag": "",
-  "testStatus": "not-tested",
+  "testStatus": "pass",
   "notes": ""
 }
