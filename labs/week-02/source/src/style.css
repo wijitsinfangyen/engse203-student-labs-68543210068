@@ -60,7 +60,23 @@ body {
   display: none;
 }
 
-/* TODO: เพิ่มรูปแบบ .message.loading, .message.success, .message.error */
+.message.loading {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.message.success {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.message.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
 
 .stats {
   display: grid;
@@ -165,4 +181,3 @@ select {
     align-items: stretch;
   }
 }
-

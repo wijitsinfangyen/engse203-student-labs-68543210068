@@ -1,0 +1,149 @@
+Run: 2026-10-19T07:36:50.109Z
+Command: npm.cmd run check
+Directory: labs/week-05/source
+Exit: 0
+
+
+> engse203-week05-campus-service-request@0.3.0 check
+> node scripts/check-project.mjs
+
+[PASS] FILES public/data/initialRequests.json
+[PASS] FILES src/main.jsx
+[PASS] FILES src/App.jsx
+[PASS] FILES src/styles.css
+[PASS] FILES src/pages/AppLayout.jsx
+[PASS] FILES src/pages/DashboardPage.jsx
+[PASS] FILES src/pages/NewRequestPage.jsx
+[PASS] FILES src/pages/RequestDetailPage.jsx
+[PASS] FILES src/pages/AboutPage.jsx
+[PASS] FILES src/pages/NotFoundPage.jsx
+[PASS] FILES src/services/requestService.js
+[PASS] FILES src/services/requestStorage.js
+[PASS] FILES src/components/LoadingState.jsx
+[PASS] FILES src/components/ErrorState.jsx
+[PASS] FILES src/components/RequestForm.jsx
+[PASS] FILES src/components/RequestList.jsx
+[PASS] FILES vite.config.js
+[PASS] FILES package.json
+[PASS] FILES package-lock.json
+[PASS] FILES README.md
+[PASS] DEPS react-router-dom ต้องเป็น 7.18.2
+[PASS] DEPS Node.js engine >=22.12.0
+[PASS] SCRIPTS npm run check
+[PASS] BUILD Vite base: './'
+[PASS] R02 main.jsx ครอบ application ด้วย <HashRouter>
+[PASS] R02-R05 Route requests/new
+[PASS] R02-R05 Route requests/:requestId
+[PASS] R02-R05 Route about
+[PASS] R02-R05 Route *
+[PASS] R02 Dashboard index route
+[PASS] R02 AppLayout render <Outlet /> จริง (ไม่ใช่แค่คอมเมนต์)
+[PASS] R04 RequestDetailPage เรียก useParams()
+[PASS] R11 NewRequestPage เรียก useNavigate()
+[PASS] R07 Service export getRequests
+[PASS] R07 Service export getRequestById
+[PASS] R07 Service export addRequest
+[PASS] R07 Service export deleteRequest
+[PASS] R07 Service export resetRequests
+[PASS] R10 Service ตรวจ response.ok หลัง fetch
+[PASS] R10 ใช้ import.meta.env?.BASE_URL แบบ optional chaining เพื่อให้ทดสอบนอก Vite ได้
+[PASS] R14 STORAGE_KEY ถูกต้อง
+[PASS] R14 SCHEMA_VERSION = 1
+[PASS] R14 Storage export readStoredRequests
+[PASS] R14 Storage export writeStoredRequests
+[PASS] R14 Storage export clearStoredRequests
+[PASS] R14 ห้ามใช้ localStorage.clear() — ลบเฉพาะ STORAGE_KEY ของ LAB05
+[PASS] R07 src\App.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\App.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\AppHeader.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\AppHeader.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\ErrorState.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\ErrorState.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\FilterBar.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\FilterBar.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\LoadingState.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\LoadingState.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\RequestCard.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\RequestCard.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\RequestForm.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\RequestForm.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\RequestList.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\RequestList.jsx: ไม่มี direct fetch
+[PASS] R07 src\components\SummaryPanel.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\components\SummaryPanel.jsx: ไม่มี direct fetch
+[PASS] R07 src\hooks\useManualReload.js: ไม่มี direct localStorage access
+[PASS] R07 src\hooks\useManualReload.js: ไม่มี direct fetch
+[PASS] R07 src\main.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\main.jsx: ไม่มี direct fetch
+[PASS] R07 src\pages\AboutPage.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\pages\AboutPage.jsx: ไม่มี direct fetch
+[PASS] R07 src\pages\AppLayout.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\pages\AppLayout.jsx: ไม่มี direct fetch
+[PASS] R07 src\pages\DashboardPage.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\pages\DashboardPage.jsx: ไม่มี direct fetch
+[PASS] R07 src\pages\NewRequestPage.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\pages\NewRequestPage.jsx: ไม่มี direct fetch
+[PASS] R07 src\pages\NotFoundPage.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\pages\NotFoundPage.jsx: ไม่มี direct fetch
+[PASS] R07 src\pages\RequestDetailPage.jsx: ไม่มี direct localStorage access
+[PASS] R07 src\pages\RequestDetailPage.jsx: ไม่มี direct fetch
+[PASS] R07 src\services\requestService.js: ไม่มี direct localStorage access
+[PASS] R07 src\services\requestStorage.js: ไม่มี direct fetch
+[PASS] R07 src\utils\requestSummary.js: ไม่มี direct localStorage access
+[PASS] R07 src\utils\requestSummary.js: ไม่มี direct fetch
+[PASS] TODO src\App.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\AppHeader.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\ErrorState.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\FilterBar.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\LoadingState.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\RequestCard.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\RequestForm.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\RequestList.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\components\SummaryPanel.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\hooks\useManualReload.js: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\main.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\pages\AboutPage.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\pages\AppLayout.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\pages\DashboardPage.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\pages\NewRequestPage.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\pages\NotFoundPage.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\pages\RequestDetailPage.jsx: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\services\requestService.js: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\services\requestStorage.js: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] TODO src\utils\requestSummary.js: ไม่มี TODO ที่ยังไม่ได้ทำ
+[PASS] HOOKS app-layout
+[PASS] HOOKS page-dashboard
+[PASS] HOOKS page-new-request
+[PASS] HOOKS page-request-detail
+[PASS] HOOKS page-about
+[PASS] HOOKS page-not-found
+[PASS] HOOKS loading-state
+[PASS] HOOKS error-state
+[PASS] HOOKS empty-state
+[PASS] HOOKS request-list
+[PASS] HOOKS request-form
+[PASS] HOOKS retry-button
+[PASS] HOOKS reset-button
+[PASS] DATA seed JSON อ่านได้และมี REQ IDs อย่างน้อย 3 รายการ
+[PASS] RUNTIME import Service/Storage ได้
+[PASS] R10 getRequests() คืนรายการคำร้องเมื่อโหลดสำเร็จ
+[PASS] R09 getRequests({scenario:'empty'}) คืน array ว่าง
+[PASS] R09 getRequests({scenario:'error'}) ต้อง reject
+[PASS] R04 getRequestById() คืนคำร้องที่ ID ตรงกัน
+[PASS] R04 getRequestById() คืน null เมื่อไม่พบ resource
+[PASS] R14 readStoredRequests() คืน status "missing" เมื่อยังไม่มีข้อมูล
+[PASS] R14 writeStoredRequests() แล้วอ่านกลับได้ status "valid"
+[PASS] R14 readStoredRequests() คืน status "invalid" เมื่อ JSON เสีย
+[PASS] R14 readStoredRequests() คืน status "invalid" เมื่อ schemaVersion ไม่ตรง
+[PASS] R14 readStoredRequests() คืน status "invalid" เมื่อมี ID ซ้ำ
+[PASS] R07 getRequests() อ่านจาก storage เมื่อมีข้อมูลที่ถูกต้องอยู่แล้ว
+[PASS] R14 ข้อมูลเสียหายต้องกู้คืนได้และแจ้ง recovery
+[PASS] R11 addRequest() สร้างคำร้องใหม่ status pending และ ID ขึ้นต้น REQ-
+[PASS] R11 addRequest() ปฏิเสธข้อมูลที่ไม่ครบด้วยข้อความที่ผู้ใช้เข้าใจได้
+[PASS] R12 deleteRequest() ลบถูก ID และ persist
+[PASS] R13 resetRequests() คืนข้อมูลตัวอย่างเริ่มต้น
+[PASS] R14 clearStoredRequests() ลบเฉพาะคีย์ของ LAB05
+
+ENGSE203 LAB05 checker v2 — ขอบเขต: ทั้งหมด
+ผ่าน 136/136 รายการ
+หมายเหตุ: checker ตรวจ contract เท่านั้น ต้องทำ TC-L5 runtime/manual ใน browser ต่อ

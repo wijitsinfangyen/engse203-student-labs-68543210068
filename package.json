@@ -15,5 +15,13 @@
     "verify:setup": "node scripts/verify-repository.mjs --setup",
     "verify": "node scripts/verify-repository.mjs",
     "verify:lab": "node scripts/verify-repository.mjs --week"
+  },
+  "author": {
+    "name": "Wijitsin Fangyen",
+    "email": "wijitsinfangyen@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068.git"
   }
 }

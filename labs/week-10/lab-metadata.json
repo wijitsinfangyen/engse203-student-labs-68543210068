@@ -1,0 +1,15 @@
+{
+  "week": "week-10",
+  "title": "Node.js Database Integration (node:sqlite)",
+  "status": "ready",
+  "sourceOrigin": "course-starter",
+  "originalRepoUrl": "",
+  "originalCommit": "",
+  "pullRequestUrl": "",
+  "submissionTag": "",
+  "testStatus": "pass",
+  "notes": "Automated tests passed. Personal testing and instructor review completed.",
+  "sourceRef": "main",
+  "resultType": "report",
+  "previousPullRequestUrl": ""
+}

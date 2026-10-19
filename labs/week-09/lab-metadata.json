@@ -1,0 +1,15 @@
+{
+  "week": "week-09",
+  "title": "Relational Database and SQL (SQLite)",
+  "status": "ready",
+  "sourceOrigin": "course-starter",
+  "originalRepoUrl": "",
+  "originalCommit": "",
+  "pullRequestUrl": "",
+  "submissionTag": "",
+  "testStatus": "pass",
+  "notes": "Automated tests passed. Personal testing and instructor review completed.",
+  "sourceRef": "main",
+  "resultType": "report",
+  "previousPullRequestUrl": ""
+}

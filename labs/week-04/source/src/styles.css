@@ -12,7 +12,12 @@
   --danger: #b42318;
 }
 
-body { margin: 0; min-width: 320px; }
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f2f6fb;
+}
+
 button, input, select, textarea { font: inherit; }
 .container { width: min(100% - 2rem, 76rem); margin-inline: auto; }
 .hero { padding: 2rem 0; color: white; background: linear-gradient(135deg, var(--navy), var(--blue)); }
@@ -30,7 +35,8 @@ button, input, select, textarea { font: inherit; }
 label, legend { font-weight: 750; }
 input:not([type="radio"]), select, textarea { width: 100%; padding: .72rem; border: 1px solid #91a8c5; border-radius: .6rem; }
 .error { min-height: 1.1rem; color: var(--danger); }
-.status { min-height: 1.2rem; }
+.status { min-height: 1.2rem; color: var(--muted); }
+.status.success { color: green; font-weight: 700; }
 form > button, .filter-active { border: 0; border-radius: .6rem; padding: .65rem .85rem; color: white; background: var(--blue); font-weight: 800; }
 .filter-bar { display: flex; flex-wrap: wrap; gap: .4rem; }
 .filter-button { border: 1px solid var(--border); border-radius: .6rem; padding: .55rem .7rem; color: var(--navy); background: #eef4fb; }
@@ -40,6 +46,7 @@ form > button, .filter-active { border: 0; border-radius: .6rem; padding: .65rem
 .request-card p { margin: .2rem 0; color: var(--muted); }
 .request-id { font-weight: 800; }
 .request-card button { align-self: start; border: 0; border-radius: .5rem; padding: .5rem .7rem; color: var(--danger); background: #feeceb; }
+.empty-state { padding: 1rem; border: 1px dashed var(--border); border-radius: .75rem; text-align: center; color: var(--muted); background: #f9fbfe; }
 
 @media (min-width: 52rem) {
   .summary-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -49,32 +56,3 @@ form > button, .filter-active { border: 0; border-radius: .6rem; padding: .65rem
 
 /* TODO LAB4-R12: เพิ่ม focus-visible, aria-invalid และ state/badge styles */
 
-:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
-}
-
-[aria-invalid="true"] {
-  border-color: var(--danger);
-  background-color: #fff8f8;
-}
-
-.badge {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.4rem;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-.status-pending { background: #fff3cd; color: #856404; }
-.status-in-progress { background: #cce5ff; color: #004085; }
-.status-completed { background: #d4edda; color: #155724; }
-
-.urgent-card {
-  border-color: var(--danger);
-  background: #fff8f8;
-}
-
-.priority-urgent { color: var(--danger); font-weight: bold; }

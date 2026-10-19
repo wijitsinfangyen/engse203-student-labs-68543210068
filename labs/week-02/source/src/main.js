@@ -35,7 +35,6 @@ async function loadDashboard() {
     state.tasks = await fetchLearningTasks({
       simulateError: params.get("simulateError") === "1",
     });
-
     render();
     setMessage(elements.message, "success", `โหลดข้อมูล ${state.tasks.length} รายการแล้ว`);
   } catch (error) {
@@ -63,3 +62,4 @@ elements.status.addEventListener("change", (event) => {
 });
 
 loadDashboard();
+

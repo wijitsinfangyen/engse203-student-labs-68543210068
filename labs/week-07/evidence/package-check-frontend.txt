@@ -1,0 +1,17 @@
+Run: 2026-10-19T07:36:51.916Z
+Command: npm.cmd run check
+Directory: labs/week-07/source/frontend
+Exit: 0
+
+
+> engse203-week05-campus-service-request@0.3.0 check
+> node scripts/check-project.mjs
+
+PASS HashRouter entry
+PASS nested routes
+PASS layout outlet
+PASS detail route parameter
+PASS form navigation
+PASS relative build base
+PASS fetch only in API client and storage only in storage module
+API frontend: PASS 22 checks (mock HTTP; browser review still required)

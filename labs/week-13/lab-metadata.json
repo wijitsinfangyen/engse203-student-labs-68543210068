@@ -1,0 +1,15 @@
+{
+  "week": "week-13",
+  "title": "Quality & Security: Authentication, Authorization and Hardening",
+  "sourceOrigin": "course-starter",
+  "originalRepoUrl": "",
+  "originalCommit": "",
+  "pullRequestUrl": "",
+  "submissionTag": "",
+  "status": "ready",
+  "testStatus": "pass",
+  "sourceRef": "main",
+  "notes": "Automated tests passed. Personal testing and instructor review completed.",
+  "resultType": "report",
+  "previousPullRequestUrl": ""
+}

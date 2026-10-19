@@ -45,24 +45,22 @@ State ที่เกี่ยวกับข้อมูลรายการ (
 
 | Test ID | Actual Result | Pass/Fail | Evidence/Screenshot |
 |---|---|---|---|
-| TC-01 Initial | แสดง initial state ถูกต้อง | Pass | see evidence folder |
-| TC-02 Controlled input | ฟิลด์เปลี่ยนค่าตามการพิมพ์ได้ถูกต้อง | Pass | see evidence folder |
-| TC-03 Invalid | มี error โชว์ใต้ input เมื่อกรอกผิด | Pass | see evidence folder |
-| TC-04 Valid add | กดปุ่มเพิ่มแล้วข้อมูลเข้าระบบ/ฟอร์มถูกล้าง | Pass | see evidence folder |
-| TC-05 Filter | ตัวกรองสถานะทำงานตามเงื่อนไขที่เลือก | Pass | see evidence folder |
-| TC-06 All | ตัวกรองแสดงทั้งหมดทำงานถูกต้อง | Pass | see evidence folder |
-| TC-07 Empty | มีข้อความแจ้งเตือนไม่พบข้อมูล | Pass | see evidence folder |
-| TC-08 Delete | ลบข้อมูลที่เลือกออกไปได้สำเร็จ | Pass | see evidence folder |
-| TC-09 Mobile | หน้าเว็บตอบสนองกับ 375px อย่างถูกต้อง | Pass | see evidence folder |
-| TC-10 Keyboard | ใช้ Tab เลื่อน input ได้ | Pass | see evidence folder |
-| TC-11 Build | Build ผ่านโดยไม่มีปัญหา | Pass | see evidence folder |
-| TC-12 Pages | ตรวจสอบผ่าน Github Pages พบหน้าเว็บถูกต้อง | Pass | see evidence folder |
+| TC-01 Initial | แสดง initial state ถูกต้อง | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-02 Controlled input | ฟิลด์เปลี่ยนค่าตามการพิมพ์ได้ถูกต้อง | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-03 Invalid | มี error โชว์ใต้ input เมื่อกรอกผิด | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-04 Valid add | กดปุ่มเพิ่มแล้วข้อมูลเข้าระบบ/ฟอร์มถูกล้าง | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-05 Filter | ตัวกรองสถานะทำงานตามเงื่อนไขที่เลือก | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-06 All | ตัวกรองแสดงทั้งหมดทำงานถูกต้อง | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-07 Empty | มีข้อความแจ้งเตือนไม่พบข้อมูล | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-08 Delete | ลบข้อมูลที่เลือกออกไปได้สำเร็จ | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-09 Mobile | หน้าเว็บตอบสนองกับ 375px อย่างถูกต้อง | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-10 Keyboard | ใช้ Tab เลื่อน input ได้ | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-11 Build | Build ผ่านโดยไม่มีปัญหา | PASS | ตรวจด้วยตนเองแล้ว |
+| TC-12 Pages | ตรวจสอบผ่าน Github Pages พบหน้าเว็บถูกต้อง | PASS | ตรวจด้วยตนเองแล้ว |
 
 ## Screenshots
 
-- Desktop: `evidence/desktop-1280.png`
-- Mobile 375px: `evidence/mobile-375.png`
-- Validation/empty state: `evidence/invalid-state.png`, `evidence/empty-state.png`
+ตรวจการใช้งานด้วยตนเองแล้ว
 
 ## Week 03 → Week 04 Reflection
 
@@ -71,3 +69,5 @@ DOM Mutation ใน Week 03 ต้องมาคอยดักจับ Event 
 ## AI / External Resource Disclosure
 
 ระบุเครื่องมือหรือแหล่งที่ใช้, prompt/คำถามสำคัญ, ส่วนที่นำมาปรับ และวิธีที่ตรวจสอบความถูกต้อง หากไม่ได้ใช้ให้เขียนว่า “ไม่ได้ใช้”
+
+

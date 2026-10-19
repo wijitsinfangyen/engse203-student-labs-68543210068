@@ -1,0 +1,42 @@
+Run: 2026-10-19T07:37:39.069Z
+Command: node --disable-warning=ExperimentalWarning check-week12.mjs
+Exit: 0
+
+POST /api/auth/login 404 9.929 ms - 69
+DELETE /api/requests/REQ-002 204 0.433 ms - -
+POST /api/requests 201 0.898 ms - 260
+POST /api/auth/login 404 0.290 ms - 69
+PUT /api/requests/REQ-999 404 0.367 ms - 65
+GET /api/health 200 0.359 ms - 139
+
+✅ CP44 api ใช้ Vitest (script test = vitest)
+✅ CP44 test ใช้ฐานข้อมูลแยก (DB_FILE :memory: ใน vitest.config.js)
+✅ CP44 TEST_CASES.md มีกรณีทดสอบอย่างน้อย 8 ข้อ
+✅ CP44 มีกรณีค่าขอบ (boundary) ในตาราง
+✅ CP45 มี unit test อย่างน้อย 10 ข้อ (tests/unit)
+✅ CP45 BUG #0 · รายละเอียด 10 ตัวอักษรพอดี → ผ่าน
+✅ CP45 รายละเอียด 9 ตัวอักษร → ยังถูกปฏิเสธ (ไม่แก้เกิน)
+✅ CP46 มี integration test อย่างน้อย 12 ข้อ (tests/integration)
+✅ CP46 integration test ครอบคลุม PUT และ DELETE
+✅ CP46 ตั้งค่า coverage แล้ว (script coverage + @vitest/coverage-v8)
+✅ CP46 npm test ใน api ผ่านทุกข้อ
+✅ CP47 BUG #1 · ลบรายการกลางแล้วเพิ่มใหม่ → 201
+✅ CP47 BUG #3 · เปลี่ยนสถานะคำร้องที่ไม่มี → 404 (ไม่ใช่ 500)
+✅ CP47 ไม่ถอยหลัง · /api/health ยังตอบ 200 และต่อฐานข้อมูลได้
+✅ CP47 BUG #2 · Dashboard นับ "กำลังดำเนินการ" ถูก
+✅ CP47 frontend มี test และผ่านทุกข้อ
+✅ CP47 regression test BUG #1 (ลบแล้วเพิ่มใหม่)
+✅ CP47 regression test BUG #2 (นับ in-progress)
+✅ CP47 regression test BUG #3 (PUT คำร้องที่ไม่มี → 404)
+✅ CP47 DEBUG_LOG.md ระบุสาเหตุครบ 4 bug
+✅ CHAL ⭐ coverage ของ api ≥ 85% (statements)
+✅ CHAL ⭐ CI รัน npm test ทุกครั้งที่ push
+
+──────────────────────────────────────────────────────────
+🏫 ในห้อง (CP44–CP47)   ผ่าน 20/20 รายการ
+⭐ Challenge            ผ่าน 2/2 รายการ
+──────────────────────────────────────────────────────────
+ผ่าน 22/22 รายการ
+
+หมายเหตุ: checker ตรวจได้ว่า bug หายและมี test กัน แต่ตรวจไม่ได้ว่าเข้าใจสาเหตุ
+ผู้สอนจะถามให้เล่าว่าใช้เครื่องมือไหนหาเจอ และทำไมแก้ตรงนั้น

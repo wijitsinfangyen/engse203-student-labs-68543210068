@@ -2,13 +2,13 @@
   "name": "engse203-lab01",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/hello.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
     "start": "node src/hello.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Wijitsin Fangyen",
   "license": "ISC",
   "type": "commonjs"
 }

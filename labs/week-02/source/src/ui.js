@@ -55,7 +55,7 @@ export function renderTasks(element, tasks) {
       ({ week, title, topic, status, tags = [] }) => `
         <article class="task-card">
           <div class="task-meta">
-            <span class="badge">Week ${week}</span>
+          <span class="badge">Week ${week}</span>
             <span class="badge status-${escapeHtml(status)}">${getStatusLabel(status)}</span>
           </div>
           <h2>${escapeHtml(title)}</h2>
@@ -68,3 +68,4 @@ export function renderTasks(element, tasks) {
     )
     .join("");
 }
+

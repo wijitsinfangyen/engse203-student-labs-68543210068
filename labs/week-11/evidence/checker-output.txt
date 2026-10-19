@@ -1,0 +1,59 @@
+Run: 2026-10-19T07:37:36.105Z
+Command: node --disable-warning=ExperimentalWarning check-week11.mjs
+Exit: 0
+
+GET /api/health 200 1.929 ms - 131
+GET /api/requests 200 0.616 ms - 2559
+GET /api/nope 404 0.293 ms - 62
+
+✅ CP35 มีชั้น API (api/src/app.js)
+✅ CP35 มีชั้น frontend (frontend/src)
+✅ CP35 มีชั้นฐานข้อมูล (api/data/schema.sql)
+✅ CP36 มี config.js รวม env ไว้ที่เดียว
+✅ CP36 config อ่าน NODE_ENV
+✅ CP36 config อ่าน PORT จาก env
+✅ CP36 config มี isProd แยก dev/production
+✅ CP36 app.js ใช้ config ไม่ hardcode
+✅ CP37 มี healthRoutes.js
+✅ CP37 app.js ผูก /api/health
+✅ CP37 health คืนสถานะฐานข้อมูล
+✅ CP37 service มี getDbStatus()
+✅ CP38 มี errorHandler รวมศูนย์
+✅ CP38 มี notFound handler
+✅ CP38 ใช้ morgan logging
+✅ CP38 logging แยก dev/production
+✅ CP39 app.js เสิร์ฟ static ตอน production
+✅ CP39 config มี staticDir
+✅ CP39 production: เปิด / แล้วได้หน้าเว็บ (ไม่ใช่ JSON)
+✅ CP39 bundle production ไม่ฝัง localhost:3001 (ใช้ path สัมพัทธ์)
+✅ CP39 frontend มี build script
+✅ CP39 frontend build แล้ว (มี dist/)
+✅ CP37 GET /api/health ตอบ 200 + status ok
+✅ CP37 health บอก env และ database
+✅ CP35 ระบบยังคืนข้อมูลได้ (integration ไม่พัง)
+✅ CP38 route ที่ไม่มี → 404 (notFound ทำงาน)
+✅ CP40 มี README.md
+✅ CP40 README อธิบายสถาปัตยกรรม 3 ชั้น
+✅ CP40 README มีวิธีรัน (npm)
+✅ CP41 มีบันทึกคำตอบ DATABASE_CHOICES.md
+✅ CP41 ตอบเรื่อง SQLite/NoSQL/async
+✅ CP42 มีหลักฐานสาธิต (DEMO.md หรือลิงก์วิดีโอ)
+✅ CP43 frontend build แล้ว (จำลอง production ได้)
+✅ CP43 app.js เสิร์ฟ static ตอน production (พอร์ตเดียว)
+✅ CP43 มี frontend/.env.production (VITE_API_BASE_URL ว่าง)
+✅ CP43 root package.json มี script build + start (build ใช้ --include=dev)
+✅ CP43 มีไฟล์เตรียม deploy จริง (render.yaml — สำหรับ Challenge)
+✅ CHAL ⭐ มี deploy config จริง (render.yaml/Procfile/Dockerfile)
+✅ CHAL ⭐ render.yaml ตามสเปกปัจจุบัน (runtime · rootDir · healthCheckPath · NODE_VERSION)
+✅ CHAL ⭐ health check บอก uptime
+✅ CHAL ⭐ มี CI (.github/workflows)
+
+──────────────────────────────────────────────────────────
+🏫 ในห้อง (CP35–CP39)   ผ่าน 17/17 รายการ
+🏠 ที่บ้าน (CP40–CP43)   ผ่าน 20/20 รายการ
+⭐ Challenge            ผ่าน 4/4 รายการ
+──────────────────────────────────────────────────────────
+ผ่าน 41/41 รายการ
+
+หมายเหตุ: checker ตรวจว่าระบบพร้อมใช้จริง แต่ตรวจไม่ได้ว่าเข้าใจ
+ผู้สอนจะสุ่มถามให้อธิบายว่า dev ต่างจาก production อย่างไร

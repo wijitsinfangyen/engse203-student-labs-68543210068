@@ -15,13 +15,15 @@ function RequestForm({ onAddRequest }) {
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((previousData) => ({ ...previousData, [name]: value }));
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    
+    // TODO LAB4-R05–R07: validate controlled state แล้วเรียก onAddRequest
+
     const nextErrors = {};
+
     if (formData.requesterName.trim().length < 2) {
       nextErrors.requesterName = 'ชื่อผู้แจ้งต้องมีอย่างน้อย 2 ตัวอักษร';
     }
@@ -140,4 +142,3 @@ function RequestForm({ onAddRequest }) {
 }
 
 export default RequestForm;
-

@@ -1,48 +1,15 @@
-# ENGSE203 LAB05 Starter — Campus Service Request
+# LAB05 — Campus Service Request
 
-Starter นี้เปิดได้และรักษาพฤติกรรมแกนของ Week04 แบบ in-memory แต่ตั้งใจยังไม่ผ่าน LAB05 ทุกข้อ ให้ทำตาม CP00–CP06 และรัน checker หลังแต่ละช่วง
+ผู้จัดทำ วิจิตรศิลป์ ฟังเย็น 68543210068-1
 
-## Run
+React + HashRouter มี Dashboard, New Request, Detail, About และ NotFound; page เรียก service, service อ่าน seed JSON และ requestStorage จัดการ localStorage แบบมี schemaVersion
 
-```bash
-npm ci
-npm run dev
-npm run check
-npm run build
-npm run preview
-```
+ใช้ npm ci, npm run dev, npm run check และ npm run build ในโฟลเดอร์นี้
 
-## Starting state
+รองรับ loading/error/empty, retry, validation, add/delete/reset และ recovery เมื่อ storage เสีย
 
-- `HashRouter` และ dependency เตรียมไว้เป็น infrastructure
-- Dashboard ยัง render โดยตรงและยังไม่ใช้ route matrix
-- add/filter/delete ยังทำงานใน memory; refresh แล้วข้อมูลใหม่หาย
-- Page/Service/Storage filenames และ validator scaffold เตรียมไว้
-- deterministic `error`/`empty` scenario helper เตรียมไว้
-- `npm run check` ต้องรายงาน `[TODO]` จนกว่าจะทำ CP ครบ
+ผลรันอัตโนมัติใหม่ดู ../evidence/; ยังไม่ทดสอบ UI ด้วยเบราว์เซอร์ในรอบนี้
 
-## Target architecture
+REGRESSION_CHECKLIST.md ต้องให้เพื่อนทดสอบและกรอกเอง; ยังไม่ได้ระบุว่าจับคู่เสร็จแล้ว
 
-```mermaid
-flowchart TD
-  URL[Hash URL] --> Routes[App Routes]
-  Routes --> Page[Page Component]
-  Page --> UI[Shared Components]
-  Page --> Service[requestService]
-  Service --> Seed[Seed JSON]
-  Service --> Storage[requestStorage]
-```
-
-- `App.jsx` กำหนด route matrix
-- `pages/` เป็นเจ้าของ route-specific state และ lifecycle
-- `components/` รับข้อมูลและ handler ผ่าน props
-- `requestService.js` เป็น data-access boundary ของ UI
-- `requestStorage.js` เป็นไฟล์เดียวที่ใช้ `localStorage`
-
-## TODO boundary
-
-นักศึกษาประกอบ Routes/Navigation, Effect lifecycle, Service calls, persistence functions, dynamic detail และ regression checks เอง ส่วน schema validator, visual components, scenario delay และ checker infrastructure มีให้เป็น scaffold
-
-## Privacy
-
-ใช้ข้อมูลสาธิตเท่านั้น ห้ามบันทึก token, password, secret หรือข้อมูลส่วนบุคคลจริงใน `localStorage` หรือหลักฐานภาพ
+เริ่มจาก starter ของผู้สอน 3e080d3 และ component จากโครงการอ้างอิงที่ได้รับอนุญาต ดู AI_USAGE.md; ห้ามใส่รหัสผ่าน/token หรือข้อมูลส่วนบุคคลจริงลง storage

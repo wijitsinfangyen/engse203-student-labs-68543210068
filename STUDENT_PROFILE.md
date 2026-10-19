@@ -2,11 +2,12 @@
 
 | รายการ | ข้อมูล |
 |---|---|
-| รายวิชา | ENGSE203 การเขียนโปรแกรมสำหรับวิศวกรซอฟต์แวร์ |
-| รหัสนักศึกษา | 68543210068 |
-| ชื่อ-นามสกุล | วิจิตรศิลป์ ฟังเย็น |
+| ชื่อ | วิจิตรศิลป์ ฟังเย็น |
+| English name | Wijitsin Fangyen |
+| รหัส | 68543210068-1 |
 | Section | SEC2 |
-| GitHub Username | wijitsinfangyen |
-| Repository | `engse203-student-labs-68543210068` |
-| Mode | `migration` |
-| Pages Hub | https://wijitsinfangyen.github.io/engse203-student-labs-68543210068/ |
+| Email | wijitsinfangyen@gmail.com |
+| GitHub | wijitsinfangyen |
+| Pages | https://wijitsinfangyen.github.io/engse203-student-labs-68543210068/ |
+
+Portfolio นี้ดูแล LAB 01–07 และ 09–13 ใน repo เดียว ไม่รวมสอบกลางภาค

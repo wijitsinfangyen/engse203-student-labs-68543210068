@@ -1,0 +1,199 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>week-13 evidence</title><style>body{font:16px/1.65 Tahoma,sans-serif;background:#edf3f8;color:#172d43;margin:0}main{max-width:1000px;margin:24px auto;background:white;padding:28px;border-radius:14px}a{color:#1469a8}pre{overflow:auto;white-space:pre-wrap;background:#f1f5f9;padding:16px;font:13px/1.6 monospace}summary{cursor:pointer;padding:12px;background:#e6f0f7;margin-top:12px}h1{line-height:1.3}</style></head><body><main><a href="../../index.html">← LAB Portfolio</a><h1>week-13: Quality &amp; Security: Authentication, Authorization and Hardening</h1><p>Automated results are in evidence/. Personal testing and instructor review completed.</p><p>หน้านี้แสดงผลตรวจจากเครื่องจริง API และ SQLite ต้องรันด้วย Node.js ในเครื่อง; GitHub Pages ให้บริการได้เฉพาะไฟล์ static</p><p><a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/main/labs/week-13/source">Source / run instructions</a> · <a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/main/labs/week-13/evidence">Evidence</a></p><details><summary>api-tests.txt</summary><pre>Run: 2026-10-19T07:36:20.555Z
+Command: npm.cmd test
+Exit: 0
+
+
+&gt; engse203-campus-api@3.2.0 test
+&gt; vitest run
+
+
+ RUN  v5.0.3 C:/Users/HP/Documents/Codex/2026-10-19/engse203-zip-x20-section-github-username/work/source/ENGSE203-LAB01-13/labs/week-13/source/api
+
+
+ Test Files  6 passed (6)
+      Tests  73 passed (73)
+   Start at  14:36:19
+   Duration  1.44s (tests 59%, import 30%, transform 10%, worker 1%)
+</pre></details>
+<details><summary>checker-output.txt</summary><pre>Run: 2026-10-19T07:37:42.211Z
+Command: node --disable-warning=ExperimentalWarning check-week13.mjs
+Exit: 0
+
+POST /api/requests 413 2.669 ms - 590
+POST /api/auth/login 200 46.771 ms - 375
+POST /api/auth/login 401 35.302 ms - 93
+POST /api/auth/login 401 32.357 ms - 93
+POST /api/auth/login 401 35.289 ms - 93
+PUT /api/requests/REQ-001 401 0.446 ms - 69
+PUT /api/requests/REQ-001 401 1.228 ms - 69
+PUT /api/requests/REQ-001 403 0.431 ms - 78
+PUT /api/requests/REQ-001 200 0.623 ms - 323
+DELETE /api/requests/REQ-003 204 0.361 ms - -
+GET /api/requests 200 0.374 ms - 1662
+POST /api/requests 201 0.622 ms - 260
+DELETE /api/requests/REQ-002 204 0.471 ms - -
+POST /api/requests 201 0.478 ms - 260
+GET /api/health 200 0.265 ms - 139
+POST /api/auth/login 401 32.847 ms - 93
+POST /api/auth/login 401 31.858 ms - 93
+POST /api/auth/login 401 32.463 ms - 93
+POST /api/auth/login 401 34.100 ms - 93
+POST /api/auth/login 401 32.724 ms - 93
+POST /api/auth/login 429 0.182 ms - 124
+
+✅ CP48 ชื่อผู้แจ้ง 100 ตัวผ่าน · 101 ตัวถูกปฏิเสธ
+✅ CP48 รายละเอียด 1000 ตัวผ่าน · 1001 ตัวถูกปฏิเสธ
+✅ CP48 สถานที่ยาวเกิน 100 ตัวถูกปฏิเสธ
+✅ CP49 hashPassword คืนรูปแบบ scrypt$salt$hash
+✅ CP49 รหัสผ่านเดียวกันได้ hash ต่างกัน (salt สุ่ม) และไม่มีรหัสผ่านจริงปน
+✅ CP49 verifyPassword: ถูก → true · ผิด → false
+✅ CP49 ตรวจ hash บัญชีเจ้าหน้าที่ใน schema.sql ได้
+✅ CP49 ตาราง users มีคอลัมน์ role และ password_hash
+✅ CP48 body ใหญ่เกิน 10kb → 413 เป็น JSON
+✅ CP50 POST /api/auth/login ถูกต้อง → 200 พร้อม token (3 ส่วน)
+✅ CP50 payload ของ token มี role=staff และ exp · ไม่มีรหัสผ่าน
+✅ CP50 รหัสผ่านผิด กับ อีเมลที่ไม่มี → 401 ข้อความเดียวกัน
+✅ CP50 ผู้แจ้งทั่วไป (ไม่มีรหัสผ่าน) เข้าสู่ระบบไม่ได้
+✅ CP51 PUT ไม่มี token → 401
+✅ CP51 PUT ด้วย token ปลอม (secret อื่น) → 401
+✅ CP51 PUT ด้วย token ที่ไม่ใช่เจ้าหน้าที่ → 403
+✅ CP51 เจ้าหน้าที่: PUT → 200 และ DELETE → 204
+✅ CP51 GET และ POST ยังไม่ต้องเข้าสู่ระบบ
+✅ CP51 ไม่ถอยหลัง · BUG #1 ของสัปดาห์ 12 ยังแก้อยู่ (ลบแล้วเพิ่มใหม่ → 201)
+✅ CP52 production ไม่ตั้ง JWT_SECRET → ระบบไม่ยอม start
+✅ CP52 production: error ไม่ส่ง stack trace ให้ผู้ใช้
+✅ CP52 .env.example มี JWT_SECRET ค่าว่าง และ .gitignore มี .env (ไม่ commit ค่าลับ)
+✅ CP52 npm test ใน api ผ่านทุกข้อ และมี test ของ 401 กับ 403
+✅ CHAL ⭐ มี security header (X-Content-Type-Options: nosniff)
+✅ CHAL ⭐ ผิดเกิน 5 ครั้ง → 429 (จำกัดการเดารหัสผ่าน)
+✅ CHAL ⭐ frontend แนบ Authorization: Bearer ทุกคำขอ (ทำต่อใน Term Project)
+✅ CHAL ⭐ render.yaml ให้ Render สร้าง JWT_SECRET (generateValue)
+
+──────────────────────────────────────────────────────────
+🏫 ในห้อง (CP48–CP52)   ผ่าน 23/23 รายการ
+⭐ Challenge            ผ่าน 4/4 รายการ
+──────────────────────────────────────────────────────────
+ผ่าน 27/27 รายการ
+
+หมายเหตุ: checker ตรวจพฤติกรรมด้านความปลอดภัยได้ แต่ตรวจไม่ได้ว่าเข้าใจเหตุผล
+ผู้สอนจะถามว่า 401 ต่างจาก 403 อย่างไร และทำไมต้อง hash รหัสผ่าน
+</pre></details>
+<details><summary>frontend-build.txt</summary><pre>Run: 2026-10-19T07:36:14.641Z
+Command: npm.cmd run build
+Exit: 0
+
+
+&gt; engse203-week05-campus-service-request@0.3.0 build
+&gt; vite build
+
+vite v8.1.5 building client environment for production...
+[2Ktransforming...✓ 42 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.51 kB │ gzip:  0.32 kB
+dist/assets/index-UUV2Pq6a.css    4.79 kB │ gzip:  1.72 kB
+dist/assets/index-Dh-NMjFZ.js   250.31 kB │ gzip: 79.18 kB
+
+✓ built in 138ms
+</pre></details>
+<details><summary>frontend-tests.txt</summary><pre>Run: 2026-10-19T07:36:22.555Z
+Command: npm.cmd test
+Exit: 0
+
+
+&gt; engse203-week05-campus-service-request@0.3.0 test
+&gt; vitest run
+
+
+ RUN  v5.0.3 C:/Users/HP/Documents/Codex/2026-10-19/engse203-zip-x20-section-github-username/work/source/ENGSE203-LAB01-13/labs/week-13/source/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  14:36:22
+   Duration  214ms (transform 65%, import 20%, worker 9%, tests 6%)
+</pre></details>
+<details><summary>package-check-api.txt</summary><pre>Run: 2026-10-19T07:36:56.223Z
+Command: npm.cmd run check
+Directory: labs/week-13/source/api
+Exit: 0
+
+
+&gt; engse203-campus-api@3.2.0 check
+&gt; node scripts/check-project.mjs
+
+GET / 200 1.304 ms - 127
+GET /api/requests 200 0.637 ms - 2160
+GET /api/requests/REQ-001 200 0.634 ms - 321
+GET /api/requests/REQ-999 404 0.339 ms - 65
+POST /api/requests 201 18.381 ms - 248
+POST /api/requests 400 0.303 ms - 514
+POST /api/requests 400 0.230 ms - 196
+POST /api/requests 400 0.171 ms - 180
+POST /api/requests 400 0.260 ms - 198
+DELETE /api/requests/REQ-008 401 0.267 ms - 69
+DELETE /api/requests/REQ-999 401 0.099 ms - 69
+GET /api/requests 200 0.453 ms - 2409
+GET /api/unknown-path-xyz 404 0.158 ms - 74
+POST /api/requests 400 0.274 ms - 514
+GET /api/requests?status=pending 200 0.419 ms - 1702
+PUT /api/requests/REQ-001 401 0.213 ms - 69
+PUT /api/requests/REQ-001 401 0.172 ms - 69
+
+✅ STRUCT มีไฟล์ src/app.js
+✅ STRUCT มีไฟล์ src/server.js
+✅ STRUCT มีไฟล์ src/routes/requestRoutes.js
+✅ STRUCT มีไฟล์ src/controllers/requestController.js
+✅ STRUCT มีไฟล์ src/services/requestService.js
+[TODO] STRUCT มีไฟล์ src/middleware/logger.js
+✅ STRUCT มีไฟล์ data/initialRequests.json
+✅ CP01 GET / ตอบ 200 พร้อมข้อความ
+✅ CP02 GET /api/requests ตอบ 200 พร้อม array
+✅ CP02 ข้อมูลมี field ครบตาม contract
+✅ CP02 GET /:id ที่มีอยู่ ตอบ 200
+✅ CP02 GET /:id ที่ไม่มี ตอบ 404
+✅ CP03 express.json() ทำงาน (req.body อ่านได้)
+✅ CP04 POST ที่ถูกต้อง ตอบ 201
+✅ CP04 คำร้องใหม่มี status = pending
+✅ CP04 คำร้องใหม่มี id ขึ้นต้นด้วย REQ-
+✅ CP04 POST ข้อมูลไม่ครบ ตอบ 400
+✅ CP04 POST details สั้นกว่า 10 ตัว ตอบ 400
+✅ CP04 POST priority ผิด ตอบ 400
+✅ CP04 POST ที่ไม่มี requesterName เลย ตอบ 400
+[TODO] CP05 DELETE ที่มีอยู่ ตอบ 204 — ได้ 401
+[TODO] CP05 DELETE ที่ไม่มี ตอบ 404 — ได้ 401
+[TODO] CP05 ลบแล้วหายจากรายการจริง
+✅ CP07 path ที่ไม่มี ตอบ 404 พร้อม JSON
+✅ CP07 ข้อความ error บอกรายละเอียดที่ผิด
+✅ CHAL ⭐ GET ?status= กรองได้
+[TODO] CHAL ⭐ PUT เปลี่ยนสถานะได้ — ได้ 401
+[TODO] CHAL ⭐ PUT status ผิด ตอบ 400 — ได้ 401
+
+────────────────────────────────────────────────────────
+🏫 ในห้อง (CP00–CP05)   ผ่าน 19/23 รายการ
+🏠 ที่บ้าน (CP06–CP08)   ผ่าน 2/2 รายการ
+⭐ Challenge            ผ่าน 1/3 รายการ
+────────────────────────────────────────────────────────
+ผ่าน 22/28 รายการ
+
+หมายเหตุ: checker ยิง request จริง แต่ตรวจ log ใน terminal ไม่ได้
+ต้องดูด้วยตาว่า logger middleware พิมพ์ออกมาจริงหรือไม่
+</pre></details>
+<details><summary>package-check-frontend.txt</summary><pre>Run: 2026-10-19T07:36:56.671Z
+Command: npm.cmd run check
+Directory: labs/week-13/source/frontend
+Exit: 0
+
+
+&gt; engse203-week05-campus-service-request@0.3.0 check
+&gt; node scripts/check-project.mjs
+
+PASS HashRouter entry
+PASS nested routes
+PASS layout outlet
+PASS detail route parameter
+PASS form navigation
+PASS relative build base
+PASS fetch only in API client and storage only in storage module
+API frontend: PASS 22 checks (mock HTTP; browser review still required)
+</pre></details></main></body></html>

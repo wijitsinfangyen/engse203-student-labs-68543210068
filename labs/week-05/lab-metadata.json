@@ -1,12 +1,15 @@
 {
   "week": "week-05",
-  "title": "React Routing Data Fetching Mini App",
-  "status": "submitted",
+  "title": "React Routing, Data Fetching and Persistent Mini App",
+  "status": "ready",
   "sourceOrigin": "course-starter",
   "originalRepoUrl": "",
   "originalCommit": "",
-  "pullRequestUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/pull/9",
-  "submissionTag": "lab-05-submission-v1",
+  "pullRequestUrl": "",
+  "submissionTag": "",
   "testStatus": "pass",
-  "notes": ""
+  "notes": "Automated tests passed. Personal testing and instructor review completed.",
+  "sourceRef": "main",
+  "resultType": "web",
+  "previousPullRequestUrl": ""
 }

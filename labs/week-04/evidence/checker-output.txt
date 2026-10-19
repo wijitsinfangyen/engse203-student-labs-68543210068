@@ -1,0 +1,9 @@
+Run: 2026-10-19T07:37:29.696Z
+Command: npm.cmd run check
+Exit: 0
+
+
+> engse203-week04-campus-service-request@1.0.0 check
+> node scripts/check-project.mjs
+
+LAB 4 verifier: PASS — run manual TC-01–TC-12 and record evidence in README

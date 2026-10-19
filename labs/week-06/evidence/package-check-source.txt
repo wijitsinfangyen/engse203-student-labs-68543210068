@@ -1,0 +1,65 @@
+Run: 2026-10-19T07:36:50.794Z
+Command: npm.cmd run check
+Directory: labs/week-06/source
+Exit: 0
+
+
+> engse203-week06-campus-api-starter@1.0.0 check
+> node scripts/check-project.mjs
+
+GET / 200 4ms
+GET /api/requests 200 1ms
+GET /api/requests/REQ-001 200 0ms
+GET /api/requests/REQ-999 404 1ms
+POST /api/requests 201 8ms
+POST /api/requests 400 1ms
+POST /api/requests 400 0ms
+POST /api/requests 400 0ms
+POST /api/requests 400 1ms
+DELETE /api/requests/REQ-MVEXY69H-IV6E 204 1ms
+DELETE /api/requests/REQ-999 404 0ms
+GET /api/requests 200 0ms
+GET /api/unknown-path-xyz 404 0ms
+POST /api/requests 400 0ms
+GET /api/requests?status=pending 200 0ms
+PUT /api/requests/REQ-001 200 1ms
+PUT /api/requests/REQ-001 400 0ms
+
+✅ STRUCT มีไฟล์ src/app.js
+✅ STRUCT มีไฟล์ src/server.js
+✅ STRUCT มีไฟล์ src/routes/requestRoutes.js
+✅ STRUCT มีไฟล์ src/controllers/requestController.js
+✅ STRUCT มีไฟล์ src/services/requestService.js
+✅ STRUCT มีไฟล์ src/middleware/logger.js
+✅ STRUCT มีไฟล์ data/initialRequests.json
+✅ CP01 GET / ตอบ 200 พร้อมข้อความ
+✅ CP02 GET /api/requests ตอบ 200 พร้อม array
+✅ CP02 ข้อมูลมี field ครบตาม contract
+✅ CP02 GET /:id ที่มีอยู่ ตอบ 200
+✅ CP02 GET /:id ที่ไม่มี ตอบ 404
+✅ CP03 express.json() ทำงาน (req.body อ่านได้)
+✅ CP04 POST ที่ถูกต้อง ตอบ 201
+✅ CP04 คำร้องใหม่มี status = pending
+✅ CP04 คำร้องใหม่มี id ขึ้นต้นด้วย REQ-
+✅ CP04 POST ข้อมูลไม่ครบ ตอบ 400
+✅ CP04 POST details สั้นกว่า 10 ตัว ตอบ 400
+✅ CP04 POST priority ผิด ตอบ 400
+✅ CP04 POST ที่ไม่มี requesterName เลย ตอบ 400
+✅ CP05 DELETE ที่มีอยู่ ตอบ 204
+✅ CP05 DELETE ที่ไม่มี ตอบ 404
+✅ CP05 ลบแล้วหายจากรายการจริง
+✅ CP07 path ที่ไม่มี ตอบ 404 พร้อม JSON
+✅ CP07 ข้อความ error บอกรายละเอียดที่ผิด
+✅ CHAL ⭐ GET ?status= กรองได้
+✅ CHAL ⭐ PUT เปลี่ยนสถานะได้
+✅ CHAL ⭐ PUT status ผิด ตอบ 400
+
+────────────────────────────────────────────────────────
+🏫 ในห้อง (CP00–CP05)   ผ่าน 23/23 รายการ
+🏠 ที่บ้าน (CP06–CP08)   ผ่าน 2/2 รายการ
+⭐ Challenge            ผ่าน 3/3 รายการ
+────────────────────────────────────────────────────────
+ผ่าน 28/28 รายการ
+
+หมายเหตุ: checker ยิง request จริง แต่ตรวจ log ใน terminal ไม่ได้
+ต้องดูด้วยตาว่า logger middleware พิมพ์ออกมาจริงหรือไม่

@@ -1,114 +1,144 @@
 import './style.css';
 
-const form = document.querySelector('#request-form');
+document.addEventListener('DOMContentLoaded', () => {
+  // DOM References
+  const form = document.getElementById('request-form');
+  const nameInput = document.getElementById('requester-name');
+  const typeSelect = document.getElementById('request-type');
+  const detailsTextarea = document.getElementById('request-details');
 
-// TODO 1: query preview/status/list elements
-const preview = {
-    requesterName: document.querySelector('#preview-name'),
-    requestType: document.querySelector('#preview-type'),
-    details: document.querySelector('#preview-details'),
-};
+  const nameError = document.getElementById('name-error');
+  const typeError = document.getElementById('type-error');
+  const detailsError = document.getElementById('details-error');
+  const formStatus = document.getElementById('form-status');
+  const charCount = document.getElementById('char-count');
 
-const status = document.querySelector('#form-status');
-const requestList = document.querySelector('#request-list');
+  const previewName = document.getElementById('preview-name');
+  const previewType = document.getElementById('preview-type');
+  const previewDetails = document.getElementById('preview-details');
+  const requestList = document.getElementById('request-list');
+  const resetBtn = document.getElementById('reset-btn');
 
-const fields = {
-    requesterName: document.querySelector('#requester-name'),
-    requestType: document.querySelector('#request-type'),
-    details: document.querySelector('#request-details'),
-};
+  // Default Preview Text
+  const DEFAULT_NAME = 'ยังไม่ระบุชื่อ';
+  const DEFAULT_TYPE = 'ยังไม่เลือกประเภท';
+  const DEFAULT_DETAILS = 'ยังไม่มีรายละเอียด';
 
-const errorMessages = {
-    requesterName: document.querySelector('#requester-name-error'),
-    requestType: document.querySelector('#request-type-error'),
-    details: document.querySelector('#request-details-error'),
-};
-// TODO 2: readForm()
-function readForm() {
-    return Object.fromEntries(new FormData(form).entries());
-}
-// TODO 3: renderPreview(data)
-function renderPreview(data) {
-    preview.requesterName.textContent = data.requesterName?.trim() || 'ยังไม่ระบุชื่อ';
-    preview.requestType.textContent = data.requestType || 'ยังไม่เลือกประเภท';
-    preview.details.textContent = data.details?.trim() || 'ยังไม่มีรายละเอียด';
-}
-// TODO 4: validate(data)
-function validate(data) {
-    const errors = {};
+  // 1. Live Preview Event Listeners (ใช้ textContent ป้องกัน XSS)
+  nameInput.addEventListener('input', (e) => {
+    const value = e.target.value.trim();
+    previewName.textContent = value.length > 0 ? value : DEFAULT_NAME;
+  });
 
-    if (!data.requesterName?.trim()) {
-        errors.requesterName = 'Requester Name is required.';
+  typeSelect.addEventListener('change', (e) => {
+    const value = e.target.value;
+    previewType.textContent = value ? value : DEFAULT_TYPE;
+  });
+
+  detailsTextarea.addEventListener('input', (e) => {
+    const value = e.target.value;
+    previewDetails.textContent = value.trim().length > 0 ? value : DEFAULT_DETAILS;
+    charCount.textContent = `${value.length} ตัวอักษร`;
+  });
+
+  // 2. Clear Errors Function
+  function clearErrors() {
+    nameError.textContent = '';
+    typeError.textContent = '';
+    detailsError.textContent = '';
+    formStatus.textContent = '';
+    formStatus.className = 'status';
+
+    nameInput.classList.remove('is-invalid');
+    typeSelect.classList.remove('is-invalid');
+    detailsTextarea.classList.remove('is-invalid');
+  }
+
+  // 3. Form Validation Logic
+  function validateForm() {
+    clearErrors();
+    let isValid = true;
+
+    // Validate Name (อย่างน้อย 2 ตัวอักษร)
+    const nameVal = nameInput.value.trim();
+    if (nameVal.length < 2) {
+      nameError.textContent = 'กรุณากรอกชื่ออย่างน้อย 2 ตัวอักษร';
+      nameInput.classList.add('is-invalid');
+      isValid = false;
     }
 
-    if (!data.requestType) {
-        errors.requestType = 'Request Type is required.';
+    // Validate Type Selection
+    if (!typeSelect.value) {
+      typeError.textContent = 'กรุณาเลือกประเภทบริการ';
+      typeSelect.classList.add('is-invalid');
+      isValid = false;
     }
 
-    if (!data.details?.trim()) {
-        errors.details = 'Details are required.';
+    // Validate Details (อย่างน้อย 10 ตัวอักษร)
+    const detailsVal = detailsTextarea.value.trim();
+    if (detailsVal.length < 10) {
+      detailsError.textContent = 'กรุณาเขียนรายละเอียดอย่างน้อย 10 ตัวอักษร';
+      detailsTextarea.classList.add('is-invalid');
+      isValid = false;
     }
 
-    return errors;
-}
-// TODO 5: renderErrors(errors)
-function renderErrors(errors) {
-    Object.keys(fields).forEach((name) => {
-        const message = errors[name] || '';
+    return isValid;
+  }
 
-        fields[name].setAttribute('aria-invalid', message ? 'true' : 'false');
-        errorMessages[name].textContent = message;
-    });
-}
+  // 4. Form Submit Handler
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-function clearStatus() {
-    status.textContent = '';
-    status.className = 'status';
-}
-
-function setStatus(message, type) {
-    status.textContent = message;
-    status.className = `status status-${type}`;
-}
-
-function addSubmittedRequest(data) {
-    const item = document.createElement('li');
-    const title = document.createElement('strong');
-    const details = document.createElement('p');
-
-    title.textContent = `${data.requesterName.trim()} - ${data.requestType}`;
-    details.textContent = data.details.trim();
-
-    item.append(title, details);
-    requestList.prepend(item);
-}
-// TODO 6: input and submit listeners
-form.addEventListener('input', () => {
-    renderPreview(readForm());
-    clearStatus();
-});
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const data = readForm();
-    const errors = validate(data);
-
-    renderErrors(errors);
-
-    if (Object.keys(errors).length > 0) {
-        const firstInvalidField = Object.keys(fields).find((name) => errors[name]);
-
-        setStatus('Please complete the required fields.', 'error');
-        fields[firstInvalidField]?.focus();
-        return;
+    if (!validateForm()) {
+      formStatus.textContent = 'ยังบันทึกไม่ได้ กรุณาตรวจสอบข้อมูล';
+      formStatus.className = 'status error';
+      return; // ถ้าไม่ผ่าน: ไม่เพิ่มรายการ และไม่ reset ฟอร์ม
     }
 
-    addSubmittedRequest(data);
-    setStatus('Request submitted successfully.', 'success');
+    // กรณีผ่าน (Valid): เพิ่มรายการลง Submitted Requests
+    const li = document.createElement('li');
+    li.className = 'request-item';
+
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'request-item-header';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'request-item-name';
+    nameSpan.textContent = nameInput.value.trim();
+
+    const typeSpan = document.createElement('span');
+    typeSpan.className = 'request-item-type';
+    typeSpan.textContent = typeSelect.value;
+
+    const detailsP = document.createElement('p');
+    detailsP.className = 'request-item-details';
+    detailsP.textContent = detailsTextarea.value.trim();
+
+    headerDiv.appendChild(nameSpan);
+    headerDiv.appendChild(typeSpan);
+    li.appendChild(headerDiv);
+    li.appendChild(detailsP);
+
+    requestList.appendChild(li);
+
+    // แสดงข้อความ Success และเคลียร์ฟอร์ม
+    formStatus.textContent = 'บันทึกคำร้องเรียบร้อยแล้ว!';
+    formStatus.className = 'status success';
+
     form.reset();
-    renderPreview(readForm());
-    renderErrors({});
-});
+    resetPreview();
+  });
 
-console.log('LAB 3 starter ready', form);
+  // 5. Reset Preview Helper
+  function resetPreview() {
+    previewName.textContent = DEFAULT_NAME;
+    previewType.textContent = DEFAULT_TYPE;
+    previewDetails.textContent = DEFAULT_DETAILS;
+    charCount.textContent = '0 ตัวอักษร';
+  }
+
+  resetBtn.addEventListener('click', () => {
+    clearErrors();
+    resetPreview();
+  });
+});

@@ -98,11 +98,11 @@ docs/labs/week-NN/  # สร้างอัตโนมัติ ห้ามแ
 
 ## ตรวจความพร้อม
 
-- [ ] Repository name ถูกต้อง
-- [ ] `student-config.json` ไม่มี placeholder
-- [ ] `npm run verify:setup` ผ่าน
-- [ ] baseline อยู่บน `main`
-- [ ] Pages ใช้ `main /docs`
-- [ ] เห็นการ์ด LAB01–04
-- [ ] เปิด Pages Hub ใน Incognito ได้
-- [ ] ไม่มี password, token หรือ `.env`
+- [x] Repository name ถูกต้อง
+- [x] `student-config.json` ไม่มี placeholder
+- [x] `npm run verify:setup` ผ่าน
+- [x] baseline อยู่บน `main`
+- [x] Pages ใช้ `main /docs`
+- [x] เห็นการ์ด LAB01–04
+- [x] เปิด Pages Hub ใน Incognito ได้
+- [x] ไม่มี password, token หรือ `.env`

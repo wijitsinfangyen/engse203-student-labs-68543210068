@@ -1,17 +1,2 @@
-/**
- * TODO W06-M3 (🏠 CP07) · จับ error ที่หลุดมาจากทุก route
- * ⚠ ต้องมี 4 พารามิเตอร์ (err, req, res, next) Express ถึงจะรู้ว่าเป็น error handler
- * ตอบ 500 พร้อมข้อความที่ผู้ใช้ทั่วไปเข้าใจ (อย่าส่ง stack trace ออกไป)
- */
-export function errorHandler(err, req, res, next) {
-  console.error(err);
-  res.status(500).json({ error: 'เกิดข้อผิดพลาดภายในเซิร์ฟเวอร์' });
-}
-
-/**
- * TODO W06-M4 (🏠 CP07) · ไม่มี route ไหนตรงกับคำขอ
- * ตอบ 404 พร้อมบอกว่า path ไหนที่หาไม่เจอ
- */
-export function notFound(req, res) {
-  res.status(404).json({ error: `ไม่พบเส้นทาง ${req.originalUrl}` });
-}
+export function notFound(req,res) { res.status(404).json({error:'ไม่พบเส้นทาง ' + req.method + ' ' + req.originalUrl}); }
+export function errorHandler(err,req,res,next) { const status = err.status ?? 500; res.status(status).json({error: status >= 500 ? 'เกิดข้อผิดพลาดภายในเซิร์ฟเวอร์' : err.message}); }

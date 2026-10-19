@@ -2,6 +2,15 @@
 **/dist/
 **/.env
 **/.env.*
+!**/.env.example
+!labs/week-11/source/frontend/.env.production
+!labs/week-12/source/frontend/.env.production
+!labs/week-13/source/frontend/.env.production
+.lab-verification/
+**/coverage/
+**/data/requests.json
+**/*.db-wal
+**/*.db-shm
 .DS_Store
 Thumbs.db
 .vscode/

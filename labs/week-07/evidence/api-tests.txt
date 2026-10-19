@@ -1,0 +1,42 @@
+Run: 2026-10-19T07:36:15.440Z
+Command: npm.cmd test
+Exit: 0
+
+
+> engse203-week06-campus-api@2.0.0 test
+> node --test "tests/*.test.js"
+
+GET /api/requests 200 1.590 ms - 1030
+✔ GET list returns array (21.2993ms)
+GET /api/requests 200 0.272 ms - 1030
+✔ GET list contains requesterName (3.6995ms)
+GET /api/requests/REQ-001 200 0.392 ms - 321
+✔ GET existing id (4.0686ms)
+GET /api/requests/REQ-999 404 0.193 ms - 65
+✔ GET missing id (3.2173ms)
+POST /api/requests 201 8.169 ms - 280
+✔ POST creates pending record (11.946ms)
+POST /api/requests 400 0.407 ms - 514
+✔ POST incomplete rejected (3.5689ms)
+GET /api/requests 200 0.198 ms - 1030
+✔ CORS allowed origin (3.5239ms)
+PUT /api/requests/REQ-001 200 0.359 ms - 323
+GET /api/requests/REQ-001 200 0.155 ms - 323
+✔ PUT status persists (5.2917ms)
+PUT /api/requests/REQ-999 404 0.278 ms - 65
+✔ PUT missing returns 404 (3.312ms)
+DELETE /api/requests/REQ-001 204 0.113 ms - -
+GET /api/requests/REQ-001 404 0.106 ms - 65
+✔ DELETE then GET is 404 (4.3175ms)
+GET /api/requests?status=%27%20OR%201%3D1%20-- 200 0.152 ms - 2
+✔ SQL injection remains data (3.3229ms)
+PUT /api/requests/REQ-001 400 0.239 ms - 95
+✔ invalid status is 400 (3.1486ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 351.6108

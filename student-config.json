@@ -1,9 +1,40 @@
 {
   "course": "ENGSE203",
-  "studentId": "68543210068",
+  "studentId": "68543210068-1",
   "studentName": "วิจิตรศิลป์ ฟังเย็น",
   "section": "SEC2",
   "githubUsername": "wijitsinfangyen",
   "repositoryName": "engse203-student-labs-68543210068",
-  "repositoryMode": "migration"
+  "repositoryMode": "new-course",
+  "studentNameEnglish": "Wijitsin Fangyen",
+  "email": "wijitsinfangyen@gmail.com",
+  "portfolioPullRequestUrl": "",
+  "labSourceRefs": {
+    "week-01": "main",
+    "week-02": "main",
+    "week-03": "main",
+    "week-04": "main",
+    "week-05": "main",
+    "week-06": "main",
+    "week-07": "main",
+    "week-09": "main",
+    "week-10": "main",
+    "week-11": "main",
+    "week-12": "main",
+    "week-13": "main"
+  },
+  "labPullRequests": {
+    "week-01": "",
+    "week-02": "",
+    "week-03": "",
+    "week-04": "",
+    "week-05": "",
+    "week-06": "",
+    "week-07": "",
+    "week-09": "",
+    "week-10": "",
+    "week-11": "",
+    "week-12": "",
+    "week-13": ""
+  }
 }

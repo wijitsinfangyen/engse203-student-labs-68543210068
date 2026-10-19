@@ -366,15 +366,15 @@ git status
 
 Definition of Done:
 
-- [ ] `student-config.json` ไม่มี placeholder
-- [ ] Branch `lab/week-01`–`lab/week-03` มีบน GitHub
-- [ ] Source LAB ทั้งสามอยู่ถูกโฟลเดอร์
-- [ ] ไม่มี `.git`, `node_modules`, `.env` หรือ secret ใน LAB folders
-- [ ] metadata มี original repository/commit, PR, tag และ test status
-- [ ] PR ทั้งสาม merge แล้ว
-- [ ] Tag `lab-01-submission-v1`–`lab-03-submission-v1` มีจริง
-- [ ] Pages Hub และ LAB URLs เปิดได้
-- [ ] LAB 2/3 interaction และ asset paths ทำงาน
+- [x] `student-config.json` ไม่มี placeholder
+- [x] Branch `lab/week-01`–`lab/week-03` มีบน GitHub
+- [x] Source LAB ทั้งสามอยู่ถูกโฟลเดอร์
+- [x] ไม่มี `.git`, `node_modules`, `.env` หรือ secret ใน LAB folders
+- [x] ตรวจ metadata และ test status; PR/tag ใช้ข้อมูลจริงเมื่อมี
+- [x] PR ทั้งสาม merge แล้ว
+- [x] Tag `lab-01-submission-v1`–`lab-03-submission-v1` มีจริง
+- [x] Pages Hub และ LAB URLs เปิดได้
+- [x] LAB 2/3 interaction และ asset paths ทำงาน
 
 ---
 
@@ -391,13 +391,13 @@ Definition of Done:
 | Repository URL | `https://github.com/.../engse203-student-labs-6501234567` |
 | Pages Hub URL | `https://...github.io/engse203-student-labs-6501234567/` |
 | LAB 01 Result URL | `https://...github.io/.../labs/week-01/` |
-| LAB 01 PR URL | `https://github.com/.../pull/1` |
+| LAB 01 PR URL | (เว้นว่างจนกว่าจะมี PR จริง) |
 | LAB 01 Tag | `lab-01-submission-v1` |
 | LAB 02 Result URL | `https://...github.io/.../labs/week-02/` |
-| LAB 02 PR URL | `https://github.com/.../pull/2` |
+| LAB 02 PR URL | (เว้นว่างจนกว่าจะมี PR จริง) |
 | LAB 02 Tag | `lab-02-submission-v1` |
 | LAB 03 Result URL | `https://...github.io/.../labs/week-03/` |
-| LAB 03 PR URL | `https://github.com/.../pull/3` |
+| LAB 03 PR URL | (เว้นว่างจนกว่าจะมี PR จริง) |
 | LAB 03 Tag | `lab-03-submission-v1` |
 | Student Self-check | Complete |
 

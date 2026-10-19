@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: engse203-lab11-68543210068-1
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: labs/week-11/source
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: '22'

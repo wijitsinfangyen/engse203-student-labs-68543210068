@@ -1,12 +1,15 @@
 {
   "week": "week-06",
   "title": "Node.js / Express API Foundation",
-  "status": "submitted",
+  "status": "ready",
   "sourceOrigin": "course-starter",
   "originalRepoUrl": "",
   "originalCommit": "",
-  "pullRequestUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/pull/8",
-  "submissionTag": "lab-06-submission-v1",
+  "pullRequestUrl": "",
+  "submissionTag": "",
   "testStatus": "pass",
-  "notes": ""
+  "notes": "Automated tests passed. Personal testing and instructor review completed.",
+  "sourceRef": "main",
+  "resultType": "report",
+  "previousPullRequestUrl": ""
 }

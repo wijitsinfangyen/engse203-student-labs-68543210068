@@ -1,0 +1,24 @@
+import {describe,test,expect,beforeEach} from 'vitest';
+import request from 'supertest';
+import {createApp} from '../../src/app.js';
+import {loadSeed} from '../../src/services/requestService.js';
+const app=createApp();
+beforeEach(async()=>{await loadSeed();});
+const sample={requesterName:'ทดสอบ ระบบ',requestType:'แจ้งซ่อม',location:'ห้อง 301',details:'รายละเอียดสำหรับการทดสอบระบบ',priority:'normal'};
+describe('Requests through HTTP and SQLite',()=>{
+ test('GET list',async()=>{const r=await request(app).get('/api/requests');expect(r.status).toBe(200);expect(r.body.length).toBeGreaterThanOrEqual(5);});
+ test('joined names',async()=>{const r=await request(app).get('/api/requests');expect(r.body[0].requesterName).toBeTruthy();expect(r.body[0]).not.toHaveProperty('requester_id');});
+ test('filter',async()=>{const r=await request(app).get('/api/requests?status=pending');expect(r.body.every(x=>x.status==='pending')).toBe(true);});
+ test('detail found',async()=>{await request(app).get('/api/requests/REQ-001').expect(200);});
+ test('detail missing',async()=>{await request(app).get('/api/requests/REQ-999').expect(404);});
+ test('create',async()=>{const r=await request(app).post('/api/requests').send(sample);expect(r.status).toBe(201);expect(r.body.status).toBe('pending');});
+ test('reject empty',async()=>{await request(app).post('/api/requests').send({}).expect(400);});
+ test('reject short',async()=>{await request(app).post('/api/requests').send({...sample,details:'short'}).expect(400);});
+ test('update',async()=>{const r=await request(app).put('/api/requests/REQ-001').send({status:'completed'});expect(r.status).toBe(200);expect(r.body.status).toBe('completed');});
+ test('invalid status',async()=>{await request(app).put('/api/requests/REQ-001').send({status:'done'}).expect(400);});
+ test('regression BUG3 missing update returns 404',async()=>{await request(app).put('/api/requests/REQ-999').send({status:'completed'}).expect(404);});
+ test('delete',async()=>{await request(app).delete('/api/requests/REQ-001').expect(204);await request(app).get('/api/requests/REQ-001').expect(404);});
+ test('missing delete',async()=>{await request(app).delete('/api/requests/REQ-999').expect(404);});
+ test('regression BUG1 delete middle then create',async()=>{await request(app).delete('/api/requests/REQ-002').expect(204);await request(app).post('/api/requests').send(sample).expect(201);});
+ test('SQL injection is data',async()=>{const r=await request(app).get('/api/requests').query({status:"' OR 1=1 --"});expect(r.status).toBe(200);expect(r.body).toEqual([]);});
+});

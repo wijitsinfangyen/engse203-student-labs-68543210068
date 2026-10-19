@@ -1,44 +1,10 @@
-# รายงานผลการปฏิบัติการ (Lab Report)
-**รหัสวิชา:** ENGSE203  
-**ชื่อวิชา:** การวิศวกรรมซอฟต์แวร์ (Software Engineering)  
-**ภาคเรียนที่:** 1 **ปีการศึกษา:** 2569
+# LAB01 — Developer Environment and Git
 
----
+วิจิตรศิลป์ ฟังเย็น / Wijitsin Fangyen · 68543210068-1 · SEC2
 
-## ข้อมูลนักศึกษา
+Repository: https://github.com/wijitsinfangyen/engse203-student-labs-68543210068
 
-*   **ชื่อ-นามสกุล:** [wijitsin fangyen]
-*   **รหัสนักศึกษา:** [68543210068-1]
-*   **สาขาวิชา:** วิศวกรรมซอฟต์แวร์ (SE)
+ใช้ npm start เพื่อรัน src/hello.js; npm test ทดสอบ greeting และ identity ด้วย node:test
+สภาพแวดล้อมที่ตรวจจริงอยู่ ../evidence/environment.txt; ภาพ VS Code/Git และ reflection ส่วนบุคคลต้องตรวจตามใบงานก่อนส่ง
 
----
-
-## ปฏิบัติการที่ [Lab 01]
-
-### 1. วัตถุประสงค์
- - ตรวจสอบและใช้ Node.js, npm, Visual Studio Code และ Git จาก Terminal ได้
- - สร้างโครงงาน JavaScript ขนาดย่อม พร้อม package.json และ npm script
- - รันโปรแกรม Node.js ที่แสดงชื่อ รหัสนักศึกษา OS และ Node.js version ได้
- - สร้าง GitHub repository, commit, push และจัดทำ README เพื่อเป็นหลักฐานการเรียนรู้ได้
-
-
-### 2. เครื่องมือที่ใช้ในการปฏิบัติการ
-*   [เช่น Git / Visual Studio Code / GitHub Account]
-*   [เครื่องมืออื่นๆ]
-
----
-
-## 3. ขั้นตอนการทดลองและผลการปฏิบัติการ
-
-#### หลักฐานผลลัพธ์
-*   **คำอธิบาย:** [ใช่คำสั่ง npm run start]
-*   **รูปภาพผลลัพธ์:**
-    ![คำอธิบายภาพ](/Users/se68543210068/Desktop/Screenshot 2569-07-02 at 13.09.45 (2).png)
-
----
-
-### ปัญหาที่พบและแนวทางการแก้ไข (Troubleshooting)
-*   **ปัญหาที่พบ: ไม่ได้ cd ไปที่ engse203-lab01 ทำให้ไม่สามารถรันคำสั่ง npm run start
-*   **แนวทางการแก้ไข:** รันคำสั่ง cd engse203-lab01
-
----
+หลัก Git: working tree คือไฟล์ที่กำลังแก้; staging area คือชุดที่เตรียม commit; commit เป็น snapshot; branch แยกแนวงาน; PR ใช้ review ก่อนรวม main

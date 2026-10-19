@@ -51,15 +51,31 @@ for (const week of labs) {
   pass.push(`${week} ${setupMode ? "setup structure/metadata/pages" : "structure/metadata/pages"}`);
 }
 
-const forbiddenNames = new Set([".git", "node_modules", ".env", ".env.local", ".env.production"]);
-async function scanForbidden(directory) {
-  if (!(await exists(directory))) return;
-  for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
-    if (forbiddenNames.has(entry.name)) errors.push(`พบไฟล์/โฟลเดอร์ที่ห้าม commit: ${path.relative(ROOT, path.join(directory, entry.name))}`);
-    else if (entry.isDirectory()) await scanForbidden(path.join(directory, entry.name));
+// Inspect files Git can commit; ignored installed dependencies and local secrets are not submissions.
+async function filesIn(folder, prefix = '') {
+  const entries = await fs.readdir(folder, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const rel = prefix + entry.name;
+    if (entry.isDirectory()) { if (!['node_modules', '.git'].includes(entry.name)) files.push(...await filesIn(path.join(folder, entry.name), rel + '/')); }
+    else files.push(rel);
+  }
+  return files;
+}
+const candidates = await exists(path.join(ROOT, '.git'))
+  ? execFileSync('git', ['ls-files', '-co', '--exclude-standard', '-z'], { cwd: ROOT, encoding: 'utf8' }).split('\0').filter(Boolean)
+  : await filesIn(ROOT);
+for (const file of new Set(candidates)) {
+  if (!file.startsWith('labs/')) continue;
+  const name = path.posix.basename(file);
+  if (file.split('/').some(part => ['.git', 'node_modules'].includes(part))) errors.push(`Forbidden committed directory: ${file}`);
+  if (name.startsWith('.env') && name !== '.env.example') {
+    const publicConfig = /^labs\/week-(11|12|13)\/source\/frontend\/\.env\.production$/.test(file);
+    const contents = await fs.readFile(path.join(ROOT, file), 'utf8');
+    const safeLines = contents.split(/\r?\n/).every(line => !line.trim() || line.trim().startsWith('#') || /^VITE_API_BASE_URL=\s*$/.test(line));
+    if (!publicConfig || !safeLines) errors.push(`Forbidden environment file: ${file}`);
   }
 }
-await scanForbidden(path.join(ROOT, "labs"));
 
 try {
   const branch = execFileSync("git", ["branch", "--show-current"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();

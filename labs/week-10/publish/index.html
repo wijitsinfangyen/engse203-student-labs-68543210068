@@ -1,0 +1,205 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>week-10 evidence</title><style>body{font:16px/1.65 Tahoma,sans-serif;background:#edf3f8;color:#172d43;margin:0}main{max-width:1000px;margin:24px auto;background:white;padding:28px;border-radius:14px}a{color:#1469a8}pre{overflow:auto;white-space:pre-wrap;background:#f1f5f9;padding:16px;font:13px/1.6 monospace}summary{cursor:pointer;padding:12px;background:#e6f0f7;margin-top:12px}h1{line-height:1.3}</style></head><body><main><a href="../../index.html">← LAB Portfolio</a><h1>week-10: Node.js Database Integration (node:sqlite)</h1><p>Automated results are in evidence/. Personal testing and instructor review completed.</p><p>หน้านี้แสดงผลตรวจจากเครื่องจริง API และ SQLite ต้องรันด้วย Node.js ในเครื่อง; GitHub Pages ให้บริการได้เฉพาะไฟล์ static</p><p><a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/main/labs/week-10/source">Source / run instructions</a> · <a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/main/labs/week-10/evidence">Evidence</a></p><details><summary>api-tests.txt</summary><pre>Run: 2026-10-19T07:36:16.227Z
+Command: npm.cmd test
+Exit: 0
+
+
+&gt; engse203-week06-campus-api@2.0.0 test
+&gt; node --disable-warning=ExperimentalWarning --test &quot;tests/*.test.js&quot;
+
+GET /api/requests 200 2.045 ms - 2559
+✔ GET list returns array (23.5513ms)
+GET /api/requests 200 0.330 ms - 2559
+✔ GET list contains requesterName (4.3003ms)
+GET /api/requests/REQ-001 200 0.546 ms - 321
+✔ GET existing id (4.8346ms)
+GET /api/requests/REQ-999 404 0.217 ms - 65
+✔ GET missing id (3.5456ms)
+POST /api/requests 201 10.068 ms - 270
+✔ POST creates pending record (14.7603ms)
+POST /api/requests 400 0.388 ms - 514
+✔ POST incomplete rejected (4.6062ms)
+GET /api/requests 200 0.255 ms - 2559
+✔ CORS allowed origin (3.4367ms)
+PUT /api/requests/REQ-001 200 0.356 ms - 323
+GET /api/requests/REQ-001 200 0.234 ms - 323
+✔ PUT status persists (5.2877ms)
+PUT /api/requests/REQ-999 404 0.408 ms - 65
+✔ PUT missing returns 404 (4.66ms)
+DELETE /api/requests/REQ-001 204 0.290 ms - -
+GET /api/requests/REQ-001 404 0.327 ms - 65
+✔ DELETE then GET is 404 (8.1437ms)
+GET /api/requests?status=%27%20OR%201%3D1%20-- 200 0.292 ms - 2
+✔ SQL injection remains data (4.9248ms)
+PUT /api/requests/REQ-001 400 0.223 ms - 95
+✔ invalid status is 400 (3.4442ms)
+GET /api/users 200 0.369 ms - 616
+✔ GET users exposes public fields and uses the initialized database (3.8929ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 356.1846
+</pre></details>
+<details><summary>checker-output.txt</summary><pre>Run: 2026-10-19T07:37:35.395Z
+Command: node --disable-warning=ExperimentalWarning check-week10.mjs
+Exit: 0
+
+GET /api/requests 200 1.907 ms - 2559
+GET /api/requests?status=pending 200 0.489 ms - 1256
+GET /api/requests/REQ-001 200 0.482 ms - 321
+GET /api/requests/REQ-999 404 0.280 ms - 65
+POST /api/requests 201 16.617 ms - 285
+POST /api/requests 400 0.362 ms - 514
+PUT /api/requests/REQ-009 200 5.844 ms - 289
+PUT /api/requests/REQ-001 400 0.235 ms - 95
+DELETE /api/requests/REQ-009 204 5.892 ms - -
+GET /api/requests?status=x%27%20OR%20%271%27%3D%271 200 0.613 ms - 2
+GET /api/requests 200 0.475 ms - 2559
+
+✅ STRUCT มีไฟล์ api/data/schema.sql
+✅ STRUCT มี service ที่ api/src/services/requestService.js
+✅ CP26 service เรียกใช้ node:sqlite
+✅ CP26 เปิด PRAGMA foreign_keys = ON
+✅ CP26 ไม่อ่านไฟล์ JSON แบบเดิมแล้ว
+✅ CP27 ใช้ fileURLToPath / import.meta.url (path ไม่พึ่งที่รัน)
+✅ CP28 findAll ใช้ JOIN กับตาราง users
+✅ CP28 คืน requesterName ด้วย AS (ไม่ใช่ requester_id)
+✅ CP29 create แปลงชื่อผู้แจ้งเป็น id
+✅ CP31 ใช้ prepare() กับ placeholder ?
+✅ CP31 ไม่ต่อค่าจากผู้ใช้เข้า SQL โดยตรง (กัน SQL injection)
+✅ CP28 GET /api/requests คืนข้อมูลจากฐานข้อมูล
+✅ CP28 ข้อมูลที่คืนมีรูปแบบ requesterName (ไม่ใช่ requester_id)
+✅ CP28 กรอง ?status= ทำงาน (WHERE ในฐานข้อมูล)
+✅ CP28 GET /:id ที่มีจริง → 200
+✅ CP28 GET /:id ที่ไม่มี → 404
+✅ CP29 POST สร้างคำร้อง → 201 · แปลงชื่อเป็น id ให้เอง
+✅ CP29 POST ข้อมูลไม่ครบ → 400 (validation ยังทำงาน)
+✅ CP30 PUT เปลี่ยนสถานะ → 200
+✅ CP30 PUT status ไม่ถูกต้อง → 400
+✅ CP30 DELETE → 204
+✅ CP31 ยิง SQL injection แล้วไม่หลุด (คืน 0 รายการ)
+✅ CP30 CORS ยังทำงาน (ของ Week 07 ไม่พัง)
+✅ CP32 มี errorHandler รวมศูนย์ (จาก Week 06)
+✅ CP33 มี test อย่างน้อย 6 เคส
+✅ CP33 test ยิง request จริงด้วย supertest
+✅ CP34 มี API_CONTRACT.md ที่อัปเดต
+✅ CP34 contract มีหัวข้อ data model / ฐานข้อมูล
+✅ CHAL ⭐ มี endpoint สำหรับ users
+✅ CHAL ⭐ ใช้ transaction
+✅ CHAL ⭐ สร้าง INDEX
+
+──────────────────────────────────────────────────────────
+🏫 ในห้อง (CP26–CP30)   ผ่าน 20/20 รายการ
+🏠 ที่บ้าน (CP31–CP34)   ผ่าน 8/8 รายการ
+⭐ Challenge            ผ่าน 3/3 รายการ
+──────────────────────────────────────────────────────────
+ผ่าน 31/31 รายการ
+
+หมายเหตุ: checker ตรวจว่า service ใช้ฐานข้อมูลจริง แต่ตรวจไม่ได้ว่าเข้าใจ
+ผู้สอนจะสุ่มถามให้แก้ query หรืออธิบายว่าทำไมต้องแปลงชื่อเป็น id
+</pre></details>
+<details><summary>frontend-build.txt</summary><pre>Run: 2026-10-19T07:36:12.283Z
+Command: npm.cmd run build
+Exit: 0
+
+
+&gt; engse203-week05-campus-service-request@0.3.0 build
+&gt; vite build
+
+vite v8.1.5 building client environment for production...
+[2Ktransforming...✓ 41 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.51 kB │ gzip:  0.32 kB
+dist/assets/index-UUV2Pq6a.css    4.79 kB │ gzip:  1.72 kB
+dist/assets/index-CQUxb21G.js   250.34 kB │ gzip: 79.18 kB
+
+✓ built in 152ms
+</pre></details>
+<details><summary>package-check-api.txt</summary><pre>Run: 2026-10-19T07:36:52.635Z
+Command: npm.cmd run check
+Directory: labs/week-10/source/api
+Exit: 0
+
+
+&gt; engse203-week06-campus-api@2.0.0 check
+&gt; node scripts/check-project.mjs
+
+GET / 200 1.334 ms - 61
+GET /api/requests 200 0.894 ms - 2563
+GET /api/requests/REQ-001 200 0.439 ms - 325
+GET /api/requests/REQ-999 404 0.358 ms - 65
+POST /api/requests 201 16.011 ms - 248
+POST /api/requests 400 0.321 ms - 514
+POST /api/requests 400 0.307 ms - 196
+POST /api/requests 400 0.245 ms - 180
+POST /api/requests 400 0.322 ms - 198
+DELETE /api/requests/REQ-009 204 6.553 ms - -
+DELETE /api/requests/REQ-999 404 0.418 ms - 65
+GET /api/requests 200 0.264 ms - 2563
+GET /api/unknown-path-xyz 404 0.128 ms - 74
+POST /api/requests 400 0.188 ms - 514
+GET /api/requests?status=pending 200 0.374 ms - 934
+PUT /api/requests/REQ-001 200 6.880 ms - 325
+PUT /api/requests/REQ-001 400 0.235 ms - 95
+
+✅ STRUCT มีไฟล์ src/app.js
+✅ STRUCT มีไฟล์ src/server.js
+✅ STRUCT มีไฟล์ src/routes/requestRoutes.js
+✅ STRUCT มีไฟล์ src/controllers/requestController.js
+✅ STRUCT มีไฟล์ src/services/requestService.js
+✅ STRUCT มีไฟล์ src/middleware/logger.js
+[TODO] STRUCT มีไฟล์ data/initialRequests.json
+✅ CP01 GET / ตอบ 200 พร้อมข้อความ
+✅ CP02 GET /api/requests ตอบ 200 พร้อม array
+✅ CP02 ข้อมูลมี field ครบตาม contract
+✅ CP02 GET /:id ที่มีอยู่ ตอบ 200
+✅ CP02 GET /:id ที่ไม่มี ตอบ 404
+✅ CP03 express.json() ทำงาน (req.body อ่านได้)
+✅ CP04 POST ที่ถูกต้อง ตอบ 201
+✅ CP04 คำร้องใหม่มี status = pending
+✅ CP04 คำร้องใหม่มี id ขึ้นต้นด้วย REQ-
+✅ CP04 POST ข้อมูลไม่ครบ ตอบ 400
+✅ CP04 POST details สั้นกว่า 10 ตัว ตอบ 400
+✅ CP04 POST priority ผิด ตอบ 400
+✅ CP04 POST ที่ไม่มี requesterName เลย ตอบ 400
+✅ CP05 DELETE ที่มีอยู่ ตอบ 204
+✅ CP05 DELETE ที่ไม่มี ตอบ 404
+✅ CP05 ลบแล้วหายจากรายการจริง
+✅ CP07 path ที่ไม่มี ตอบ 404 พร้อม JSON
+✅ CP07 ข้อความ error บอกรายละเอียดที่ผิด
+✅ CHAL ⭐ GET ?status= กรองได้
+✅ CHAL ⭐ PUT เปลี่ยนสถานะได้
+✅ CHAL ⭐ PUT status ผิด ตอบ 400
+
+────────────────────────────────────────────────────────
+🏫 ในห้อง (CP00–CP05)   ผ่าน 22/23 รายการ
+🏠 ที่บ้าน (CP06–CP08)   ผ่าน 2/2 รายการ
+⭐ Challenge            ผ่าน 3/3 รายการ
+────────────────────────────────────────────────────────
+ผ่าน 27/28 รายการ
+
+หมายเหตุ: checker ยิง request จริง แต่ตรวจ log ใน terminal ไม่ได้
+ต้องดูด้วยตาว่า logger middleware พิมพ์ออกมาจริงหรือไม่
+</pre></details>
+<details><summary>package-check-frontend.txt</summary><pre>Run: 2026-10-19T07:36:53.070Z
+Command: npm.cmd run check
+Directory: labs/week-10/source/frontend
+Exit: 0
+
+
+&gt; engse203-week05-campus-service-request@0.3.0 check
+&gt; node scripts/check-project.mjs
+
+PASS HashRouter entry
+PASS nested routes
+PASS layout outlet
+PASS detail route parameter
+PASS form navigation
+PASS relative build base
+PASS fetch only in API client and storage only in storage module
+API frontend: PASS 22 checks (mock HTTP; browser review still required)
+</pre></details></main></body></html>

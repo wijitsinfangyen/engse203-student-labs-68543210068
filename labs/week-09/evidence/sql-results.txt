@@ -1,0 +1,410 @@
+Run: 2026-10-19T07:38:25.041Z
+Command: node --disable-warning=ExperimentalWarning scripts/record-sql-evidence.mjs
+Database: isolated in-memory SQLite (schema identical to submitted source)
+
+SQL: SELECT * FROM requests ORDER BY id
+[
+  {
+    "id": "REQ-001",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 301",
+    "details": "เครื่องปรับอากาศไม่ทำงานตั้งแต่เช้า",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-002",
+    "requester_id": 2,
+    "request_type": "บริการบัญชีผู้ใช้",
+    "location": "อาคารวิศวกรรมซอฟต์แวร์",
+    "details": "เข้าสู่ระบบห้องปฏิบัติการไม่ได้",
+    "priority": "normal",
+    "status": "in-progress",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-003",
+    "requester_id": 3,
+    "request_type": "ขอใช้อุปกรณ์",
+    "location": "ห้องประชุม 2",
+    "details": "ขอยืมโปรเจกเตอร์สำหรับนำเสนอโครงงาน",
+    "priority": "normal",
+    "status": "completed",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-004",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 302",
+    "details": "คอมพิวเตอร์เครื่องที่ 5 เปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-005",
+    "requester_id": 4,
+    "request_type": "อื่น ๆ",
+    "location": "ห้องสมุด ชั้น 2",
+    "details": "ขอเพิ่มปลั๊กไฟบริเวณโต๊ะอ่านหนังสือ",
+    "priority": "normal",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-006",
+    "requester_id": 5,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้อง 401",
+    "details": "จอภาพห้องปฏิบัติการเปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-007",
+    "requester_id": 1,
+    "request_type": "ขอใช้อุปกรณ์",
+    "location": "ห้องประชุม 3",
+    "details": "ขอใช้ไมโครโฟนสำหรับการนำเสนอ",
+    "priority": "normal",
+    "status": "in-progress",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-008",
+    "requester_id": 2,
+    "request_type": "อื่น ๆ",
+    "location": "อาคาร 2",
+    "details": "ขอเพิ่มไฟส่องสว่างบริเวณทางเดิน",
+    "priority": "normal",
+    "status": "completed",
+    "created_at": "2026-10-19 14:38:25"
+  }
+]
+
+SQL: SELECT * FROM requests WHERE status = 'pending' ORDER BY id
+[
+  {
+    "id": "REQ-001",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 301",
+    "details": "เครื่องปรับอากาศไม่ทำงานตั้งแต่เช้า",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-004",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 302",
+    "details": "คอมพิวเตอร์เครื่องที่ 5 เปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-005",
+    "requester_id": 4,
+    "request_type": "อื่น ๆ",
+    "location": "ห้องสมุด ชั้น 2",
+    "details": "ขอเพิ่มปลั๊กไฟบริเวณโต๊ะอ่านหนังสือ",
+    "priority": "normal",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-006",
+    "requester_id": 5,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้อง 401",
+    "details": "จอภาพห้องปฏิบัติการเปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  }
+]
+
+SQL: SELECT * FROM requests WHERE priority = 'urgent' AND status <> 'completed'
+[
+  {
+    "id": "REQ-001",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 301",
+    "details": "เครื่องปรับอากาศไม่ทำงานตั้งแต่เช้า",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-004",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 302",
+    "details": "คอมพิวเตอร์เครื่องที่ 5 เปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-006",
+    "requester_id": 5,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้อง 401",
+    "details": "จอภาพห้องปฏิบัติการเปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  }
+]
+
+SQL: SELECT * FROM requests WHERE details LIKE '%เครื่อง%'
+[
+  {
+    "id": "REQ-001",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 301",
+    "details": "เครื่องปรับอากาศไม่ทำงานตั้งแต่เช้า",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-004",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 302",
+    "details": "คอมพิวเตอร์เครื่องที่ 5 เปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  }
+]
+
+SQL: SELECT r.id, u.name AS requesterName, r.request_type, r.status FROM requests r JOIN users u ON u.id = r.requester_id ORDER BY r.id
+[
+  {
+    "id": "REQ-001",
+    "requesterName": "สมชาย ใจดี",
+    "request_type": "แจ้งซ่อม",
+    "status": "pending"
+  },
+  {
+    "id": "REQ-002",
+    "requesterName": "สุภาวดี รักเรียน",
+    "request_type": "บริการบัญชีผู้ใช้",
+    "status": "in-progress"
+  },
+  {
+    "id": "REQ-003",
+    "requesterName": "ธนกฤต ตั้งใจ",
+    "request_type": "ขอใช้อุปกรณ์",
+    "status": "completed"
+  },
+  {
+    "id": "REQ-004",
+    "requesterName": "สมชาย ใจดี",
+    "request_type": "แจ้งซ่อม",
+    "status": "pending"
+  },
+  {
+    "id": "REQ-005",
+    "requesterName": "ปรียา ขยันยิ่ง",
+    "request_type": "อื่น ๆ",
+    "status": "pending"
+  },
+  {
+    "id": "REQ-006",
+    "requesterName": "วิจิตรศิลป์ ฟังเย็น",
+    "request_type": "แจ้งซ่อม",
+    "status": "pending"
+  },
+  {
+    "id": "REQ-007",
+    "requesterName": "สมชาย ใจดี",
+    "request_type": "ขอใช้อุปกรณ์",
+    "status": "in-progress"
+  },
+  {
+    "id": "REQ-008",
+    "requesterName": "สุภาวดี รักเรียน",
+    "request_type": "อื่น ๆ",
+    "status": "completed"
+  }
+]
+
+SQL: SELECT r.*, u.department FROM requests r JOIN users u ON u.id = r.requester_id WHERE u.department = 'วิศวกรรมซอฟต์แวร์'
+[
+  {
+    "id": "REQ-001",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 301",
+    "details": "เครื่องปรับอากาศไม่ทำงานตั้งแต่เช้า",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25",
+    "department": "วิศวกรรมซอฟต์แวร์"
+  },
+  {
+    "id": "REQ-004",
+    "requester_id": 1,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้องปฏิบัติการ 302",
+    "details": "คอมพิวเตอร์เครื่องที่ 5 เปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25",
+    "department": "วิศวกรรมซอฟต์แวร์"
+  },
+  {
+    "id": "REQ-007",
+    "requester_id": 1,
+    "request_type": "ขอใช้อุปกรณ์",
+    "location": "ห้องประชุม 3",
+    "details": "ขอใช้ไมโครโฟนสำหรับการนำเสนอ",
+    "priority": "normal",
+    "status": "in-progress",
+    "created_at": "2026-10-19 14:38:25",
+    "department": "วิศวกรรมซอฟต์แวร์"
+  },
+  {
+    "id": "REQ-002",
+    "requester_id": 2,
+    "request_type": "บริการบัญชีผู้ใช้",
+    "location": "อาคารวิศวกรรมซอฟต์แวร์",
+    "details": "เข้าสู่ระบบห้องปฏิบัติการไม่ได้",
+    "priority": "normal",
+    "status": "in-progress",
+    "created_at": "2026-10-19 14:38:25",
+    "department": "วิศวกรรมซอฟต์แวร์"
+  },
+  {
+    "id": "REQ-008",
+    "requester_id": 2,
+    "request_type": "อื่น ๆ",
+    "location": "อาคาร 2",
+    "details": "ขอเพิ่มไฟส่องสว่างบริเวณทางเดิน",
+    "priority": "normal",
+    "status": "completed",
+    "created_at": "2026-10-19 14:38:25",
+    "department": "วิศวกรรมซอฟต์แวร์"
+  },
+  {
+    "id": "REQ-006",
+    "requester_id": 5,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้อง 401",
+    "details": "จอภาพห้องปฏิบัติการเปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25",
+    "department": "วิศวกรรมซอฟต์แวร์"
+  }
+]
+
+SQL: SELECT DISTINCT u.name FROM users u JOIN requests r ON r.requester_id = u.id ORDER BY u.name
+[
+  {
+    "name": "ธนกฤต ตั้งใจ"
+  },
+  {
+    "name": "ปรียา ขยันยิ่ง"
+  },
+  {
+    "name": "วิจิตรศิลป์ ฟังเย็น"
+  },
+  {
+    "name": "สมชาย ใจดี"
+  },
+  {
+    "name": "สุภาวดี รักเรียน"
+  }
+]
+
+SQL: SELECT * FROM requests ORDER BY created_at DESC, id DESC LIMIT 3
+[
+  {
+    "id": "REQ-008",
+    "requester_id": 2,
+    "request_type": "อื่น ๆ",
+    "location": "อาคาร 2",
+    "details": "ขอเพิ่มไฟส่องสว่างบริเวณทางเดิน",
+    "priority": "normal",
+    "status": "completed",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-007",
+    "requester_id": 1,
+    "request_type": "ขอใช้อุปกรณ์",
+    "location": "ห้องประชุม 3",
+    "details": "ขอใช้ไมโครโฟนสำหรับการนำเสนอ",
+    "priority": "normal",
+    "status": "in-progress",
+    "created_at": "2026-10-19 14:38:25"
+  },
+  {
+    "id": "REQ-006",
+    "requester_id": 5,
+    "request_type": "แจ้งซ่อม",
+    "location": "ห้อง 401",
+    "details": "จอภาพห้องปฏิบัติการเปิดไม่ติด",
+    "priority": "urgent",
+    "status": "pending",
+    "created_at": "2026-10-19 14:38:25"
+  }
+]
+
+SQL: SELECT status, COUNT(*) AS total FROM requests GROUP BY status ORDER BY total DESC
+[
+  {
+    "status": "pending",
+    "total": 4
+  },
+  {
+    "status": "completed",
+    "total": 2
+  },
+  {
+    "status": "in-progress",
+    "total": 2
+  }
+]
+
+SQL: SELECT u.name, COUNT(r.id) AS total FROM users u LEFT JOIN requests r ON r.requester_id = u.id GROUP BY u.id ORDER BY total DESC, u.name
+[
+  {
+    "name": "สมชาย ใจดี",
+    "total": 3
+  },
+  {
+    "name": "สุภาวดี รักเรียน",
+    "total": 2
+  },
+  {
+    "name": "ธนกฤต ตั้งใจ",
+    "total": 1
+  },
+  {
+    "name": "ปรียา ขยันยิ่ง",
+    "total": 1
+  },
+  {
+    "name": "วิจิตรศิลป์ ฟังเย็น",
+    "total": 1
+  }
+]
+
+PASS NOT NULL: NOT NULL constraint failed: users.name
+
+PASS UNIQUE: UNIQUE constraint failed: users.email
+
+PASS FOREIGN KEY: FOREIGN KEY constraint failed

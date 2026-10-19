@@ -1,0 +1,53 @@
+name: LAB01
+on:
+  pull_request:
+    paths: ['labs/week-01/**', 'docs/labs/week-01/**', '.github/workflows/lab-01.yml']
+  push:
+    branches: [main]
+    paths: ['labs/week-01/**', 'docs/labs/week-01/**', '.github/workflows/lab-01.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lab-01-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: labs/week-01/source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install this LAB only
+        run: |
+          foreach ($folder in @('.', 'api', 'frontend')) {
+            if (Test-Path "$folder/package.json") {
+              if (Test-Path "$folder/package-lock.json") { npm.cmd ci --prefix $folder --no-fund }
+              else { npm.cmd install --prefix $folder --no-fund }
+              if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed' }
+            }
+          }
+      - name: Build and test this LAB
+        run: |
+          npm.cmd test
+          if ($LASTEXITCODE -ne 0) { throw 'LAB01 build/test failed' }
+      - name: Instructor checker
+        run: |
+          $env:NODE_NO_WARNINGS = '1'
+          $output = (& node src/hello.js 2>&1 | Out-String)
+          $result = $LASTEXITCODE
+          Write-Output $output
+          $output | Set-Content -Encoding utf8 ../evidence/split-ci-checker.txt
+          if ($result -ne 0) { throw 'Checker process failed' }
+          $mandatory = $output -split '\r?\n' | Where-Object { ($_ -match '\[TODO\]') -and ($_ -notmatch '\[TODO\]\s+CHAL') }
+          if ($mandatory -or $output -match '(?m)\[FAIL\]|^FAIL\b|❌') { throw 'Mandatory checkpoint failed' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lab-01-evidence
+          path: labs/week-01/evidence/

@@ -1,59 +1,25 @@
-# ENGSE203 Student LAB Portfolio
+# ENGSE203 LAB Portfolio
 
-Repository เดียวสำหรับเก็บผลงาน LAB ตลอดรายวิชา โดยใช้ branch รายสัปดาห์และ GitHub Pages Hub สำหรับตรวจผลลัพธ์
+วิจิตรศิลป์ ฟังเย็น · Wijitsin Fangyen · 68543210068-1 · Section 2
+GitHub: wijitsinfangyen · email: wijitsinfangyen@gmail.com
 
-## เลือกเส้นทางเริ่มต้น
+Repository: https://github.com/wijitsinfangyen/engse203-student-labs-68543210068
+Pages เป้าหมาย: https://wijitsinfangyen.github.io/engse203-student-labs-68543210068/ (ต้องเปิดใช้งานเอง)
 
-- **รุ่นถัดไป/ยังไม่เริ่ม LAB01:** อ่าน [START_HERE_BEFORE_LAB01.md](./START_HERE_BEFORE_LAB01.md)
-- **รุ่นปัจจุบันมี repo LAB01–03 แยกแล้ว:** อ่าน [START_HERE_LAB01_TO_LAB03.md](./START_HERE_LAB01_TO_LAB03.md)
-- **ทุกสัปดาห์:** ใช้ [WEEKLY_LAB_WORKFLOW.md](./WEEKLY_LAB_WORKFLOW.md)
+12 LAB: 01–07 และ 09–13; Week08 สอบกลางภาค
+ดัดแปลงจากโครงการอ้างอิงที่ได้รับอนุญาตและ starter ของผู้สอน ไม่อ้างว่าหลักฐานเดิมเป็นผลงานของผู้เรียน ดู STUDENT_NEXT_STEPS.md และ HOW_TO_RUN.md
+ลิงก์ PR และ submission tags เว้นว่างจนกว่าจะสร้างและส่งจริง
 
-```bash
-nvm use
-npm install
-npm run setup -- --student-id 6500000000 --name "ชื่อ นามสกุล" --section SEC1 --github github-user --mode new-course
+```powershell
+node scripts/install-lab-deps.mjs
+node scripts/build-lab-output.mjs
+node scripts/check-package-scripts.mjs
+node scripts/check-labs.mjs
+node scripts/record-sql-evidence.mjs
+node scripts/prepare-portfolio.mjs
+npm.cmd run build:pages
+npm.cmd run verify
 ```
 
-## Repository Contract
-
-| รายการ | รูปแบบ |
-|---|---|
-| Repository | `engse203-student-labs-<student-id>` |
-| Weekly branch | `lab/week-NN` |
-| Source | `labs/week-NN/source/` |
-| Evidence | `labs/week-NN/evidence/` |
-| Publish input | `labs/week-NN/publish/` |
-| Pages output | `docs/labs/week-NN/` |
-| Pages source | `main /docs` |
-| Submission | Pages Hub URL + Weekly Result URL + merged PR URL + submission tag |
-
-## คำสั่งหลัก
-
-```bash
-npm run import:source -- week-01 /path/to/old-lab01-repository
-npm run import:publish -- week-03 labs/week-03/source
-npm run build:pages
-npm run verify
-```
-
-ถ้า build ซ้ำ ใช้ `--replace` ต่อท้ายคำสั่ง `import:publish` หลังตรวจ week และ path แล้ว
-
-ห้ามแก้ไฟล์ใน `docs/` ด้วยมือ เพราะ `npm run build:pages` จะสร้างใหม่จาก config, metadata และโฟลเดอร์ `publish/`
-
-## Pages URL
-
-```text
-https://<github-username>.github.io/engse203-student-labs-<student-id>/
-```
-
-## LAB ที่เตรียมไว้
-
-Template รุ่นนี้มี workspace LAB01–04 และ Pages Hub จะสร้างการ์ดจากทุก `labs/week-NN/` อัตโนมัติ
-
-## เพิ่ม LAB ในอนาคต
-
-```bash
-npm run add:lab -- week-05 "React Routing and Data"
-```
-
-จากนั้นใช้ workflow เดิมกับ `lab/week-05` และ `labs/week-05/`
+เครดิตผู้สอน: https://github.com/se-rmutl/engse203-lab และ https://se-rmutl.github.io/engse203/
+ตรวจและทดสอบส่วนตัว สาธิตและอธิบายโค้ดให้อาจารย์ตรวจแล้ว

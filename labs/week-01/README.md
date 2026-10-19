@@ -1,27 +1,27 @@
-# Week 01 — Developer Environment & GitHub Setup
+# LAB01 — Developer Environment & GitHub Repository Setup
 
-## รุ่นใหม่
+วิจิตรศิลป์ ฟังเย็น · 68543210068-1 · SEC2
 
-เปิด branch `lab/week-01` แล้วคัดลอก LAB01 starter จาก Course Repository เข้า `source/`
+Branch ที่แนะนำ: `lab/week-01` (ยังไม่ได้สร้างหรือส่ง PR ในรอบนี้)
 
-```bash
-npm --prefix labs/week-01/source install
-npm --prefix labs/week-01/source run start
-npm --prefix labs/week-01/source run check
-```
+Source: [source/](source/) · Evidence: [evidence/](evidence/) · Output/report: [publish/](publish/)
 
-## รุ่นปัจจุบันที่มี repo เดิม
+## รันและตรวจ LAB นี้แยกต่างหาก
 
-```bash
-npm run import:source -- week-01 /path/to/old-lab01
-```
+ใช้ Node.js 24 แล้วรันจาก repository root:
 
-ตั้ง `sourceOrigin` เป็น `migrated-repository` และบันทึก Original Repository URL/Commit SHA
+~~~powershell
+Set-Location labs/week-01/source
+npm.cmd ci
+npm.cmd start
+npm.cmd test
+~~~
 
-## Evidence
+ดู source/README.md และ package.json สำหรับการเปิด dev/API; ใช้ .env.example สร้าง .env ในเครื่องเท่านั้น ห้าม commit secret
 
-- Node/npm/Git versions
-- Screenshot `hello.js`
-- Branch/commit/PR reflection
+ผลใน evidence/ เป็นการรันใหม่บนโค้ดชุดนี้ด้วย Node.js 24.20.0 ไม่มีการรัน GitHub CI หรือส่งงานในรอบนี้ หลักฐานเดิมแยกออกโดยไม่แก้ไขชื่อ
 
-LAB01 ไม่มี web application ได้ ระบบจะสร้าง Evidence Report ให้อัตโนมัติ
+แผนการเรียน: https://se-rmutl.github.io/engse203/#roadmap
+โจทย์จริง: ดู starter ของสัปดาห์นี้ใน https://github.com/se-rmutl/engse203-lab/tree/main/labs
+
+Portfolio รวมผลทั้ง 12 LAB; ลิงก์ PR เว้นว่างจนกว่าจะสร้างจริง

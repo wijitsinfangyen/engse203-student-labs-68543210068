@@ -1,99 +1,100 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { addRequest, deleteRequest, getRequests, resetRequests } from '../services/requestService.js';
-import useManualReload from '../hooks/useManualReload.js';
-import LoadingState from '../components/LoadingState.jsx';
+import { Link, useSearchParams } from 'react-router-dom';
 import ErrorState from '../components/ErrorState.jsx';
 import FilterBar from '../components/FilterBar.jsx';
-import RequestForm from '../components/RequestForm.jsx';
+import LoadingState from '../components/LoadingState.jsx';
 import RequestList from '../components/RequestList.jsx';
 import SummaryPanel from '../components/SummaryPanel.jsx';
+import useManualReload from '../hooks/useManualReload.js';
+import { deleteRequest, getRequests, resetRequests } from '../services/requestService.js';
+import { summarizeRequests } from '../utils/requestSummary.js';
 
 function DashboardPage() {
-  const [searchParams] = useSearchParams();
-  const scenario = searchParams.get('scenario');
-
-  const [requests, setRequests] = useState([]);
-  const [status, setStatus] = useState('loading');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [notice, setNotice] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const scenario = searchParams.get('scenario') ?? '';
   const [reloadKey, reload] = useManualReload();
+  const [loadState, setLoadState] = useState('idle');
+  const [requests, setRequests] = useState([]);
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [notice, setNotice] = useState('');
 
   useEffect(() => {
-    let isCancelled = false;
+    let ignore = false;
+    setLoadState('loading');
+    setErrorMessage('');
+    setNotice('');
 
-    setStatus('loading');
-    getRequests({ scenario: scenario ?? undefined })
-      .then((data) => {
-        if (isCancelled) return;
-        setRequests(data);
-        setStatus(data.length === 0 ? 'empty' : 'success');
-      })
-      .catch((error) => {
-        if (isCancelled) return;
-        setErrorMessage(error.message);
-        setStatus('error');
-      });
+    getRequests({
+      scenario,
+      onRecovery: (message) => { if (!ignore) setNotice(message); },
+    }).then((data) => {
+      if (ignore) return;
+      setRequests(data);
+      setLoadState('success');
+    }).catch((error) => {
+      if (ignore) return;
+      setErrorMessage(error instanceof Error ? error.message : 'เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ');
+      setLoadState('error');
+    });
 
-    return () => {
-      isCancelled = true;
-    };
+    return () => { ignore = true; };
   }, [scenario, reloadKey]);
 
-  const summary = useMemo(() => ({
-    total: requests.length,
-    pending: requests.filter((request) => request.status === 'pending').length,
-    inProgress: requests.filter((request) => request.status === 'in-progress').length,
-    completed: requests.filter((request) => request.status === 'completed').length,
-  }), [requests]);
-  const filteredRequests = statusFilter === 'all' ? requests : requests.filter((request) => request.status === statusFilter);
+  const summary = useMemo(() => summarizeRequests(requests), [requests]);
 
-    async function handleAdd(input) {
-    await addRequest(input);
-    reload();
+  const filteredRequests = statusFilter === 'all'
+    ? requests
+    : requests.filter((request) => request.status === statusFilter);
+
+  function handleRetry() {
+    if (scenario) setSearchParams({});
+    else reload();
   }
 
-    async function handleDelete(requestId) {
-    await deleteRequest(requestId);
-    reload();
+  async function handleDelete(requestId) {
+    try {
+      const nextRequests = await deleteRequest(requestId);
+      setRequests(nextRequests);
+      setNotice(`ลบคำร้อง ${requestId} แล้ว`);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'ลบคำร้องไม่สำเร็จ');
+    }
   }
 
   async function handleReset() {
-    await resetRequests();
-    reload();
+    if (!window.confirm('ต้องการคืนข้อมูลตัวอย่างเริ่มต้นหรือไม่?')) return;
+    try {
+      setRequests(await resetRequests());
+      setStatusFilter('all');
+      setNotice('คืนข้อมูลตัวอย่างเริ่มต้นแล้ว');
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'คืนข้อมูลไม่สำเร็จ');
+    }
   }
 
   return (
     <section data-testid="page-dashboard">
-      <div className="page-heading"><div><p className="eyebrow dark">CP00 · WEEK04 REGRESSION</p><h1>Campus Service Request</h1><p>ตรวจ add, filter, delete และ validation ก่อน refactor</p></div></div>
-
-      {status === 'loading' && <LoadingState />}
-
-      {status === 'error' && <ErrorState message={errorMessage} onRetry={reload} />}
-
-      {status === 'empty' && (
+      <div className="page-heading">
+        <div><p className="eyebrow dark">ROUTED + PERSISTENT</p><h1>Dashboard</h1><p>ติดตามคำร้องจาก URL, Service Layer และ browser storage</p></div>
+        <button className="button secondary" data-testid="reset-button" type="button" onClick={handleReset}>Reset Demo Data</button>
+      </div>
+      {scenario && <p className="lab-scenario" role="status">LAB test scenario: {scenario}</p>}
+      {notice && <p className="notice" role="status">{notice}</p>}
+      {loadState === 'loading' && <LoadingState />}
+      {loadState === 'error' && <ErrorState message={errorMessage} onRetry={handleRetry} />}
+      {loadState === 'success' && requests.length === 0 && (
         <section className="state-card" data-testid="empty-state">
-          <h2>ยังไม่มีคำร้อง</h2>
-          <p>ไม่พบข้อมูลคำร้องในระบบตอนนี้</p>
-          <button className="button primary" type="button" onClick={reload}>ลองอีกครั้ง</button>
+          <h2>ยังไม่มีคำร้อง</h2><p>เริ่มสร้างคำร้องแรกของคุณได้เลย</p><Link className="button primary inline" to="/requests/new">สร้างคำร้องใหม่</Link>
         </section>
       )}
-
-      {status === 'success' && (
+      {loadState === 'success' && requests.length > 0 && (
         <>
-          {notice && <p className="notice" role="status">{notice}</p>}
           <SummaryPanel summary={summary} />
-          <div className="workspace-grid">
-                      <section className="panel form-panel">
-              <button className="button secondary" type="button" data-testid="reset-button" onClick={handleReset}>Reset Demo Data</button>
-              <RequestForm onAddRequest={handleAdd} />
-            </section>
-            <section className="panel" aria-labelledby="request-list-title">
-              <div className="section-heading"><h2 id="request-list-title">รายการคำร้อง</h2><FilterBar value={statusFilter} onFilterChange={setStatusFilter} /></div>
-              <RequestList requests={filteredRequests} onDeleteRequest={handleDelete} />
-            </section>
-          </div>
+          <section className="panel" aria-labelledby="request-list-title">
+            <div className="section-heading"><h2 id="request-list-title">รายการคำร้อง</h2><FilterBar value={statusFilter} onFilterChange={setStatusFilter} /></div>
+            <RequestList requests={filteredRequests} onDeleteRequest={handleDelete} />
+          </section>
         </>
       )}
     </section>
