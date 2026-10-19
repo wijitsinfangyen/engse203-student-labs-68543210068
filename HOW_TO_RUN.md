@@ -1,6 +1,6 @@
 # เปิด LAB แยกกันในเครื่อง (PowerShell)
 
-ใช้ Node.js 24 ชุด ZIP นี้รวมทุก LAB อยู่แล้ว ยังไม่ได้สร้าง branch หรือ PR บน GitHub
+ใช้ Node.js 24 ชุด ZIP นี้รวมทุก LAB อยู่แล้ว มี branch lab/week-NN สำหรับแต่ละ LAB; ลิงก์ PR ใช้เมื่อมี PR จริง
 
 ตัวอย่าง LAB05:
 

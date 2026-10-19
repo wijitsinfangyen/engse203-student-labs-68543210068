@@ -8,7 +8,7 @@
   "submissionTag": "",
   "status": "ready",
   "testStatus": "pass",
-  "sourceRef": "main",
+  "sourceRef": "lab/week-13",
   "notes": "Automated tests passed. Personal testing and instructor review completed.",
   "resultType": "report",
   "previousPullRequestUrl": ""

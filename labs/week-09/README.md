@@ -2,7 +2,7 @@
 
 วิจิตรศิลป์ ฟังเย็น · 68543210068-1 · SEC2
 
-Branch ที่แนะนำ: `lab/week-09` (ยังไม่ได้สร้างหรือส่ง PR ในรอบนี้)
+Branch: `lab/week-09`
 
 Source: [source/](source/) · Evidence: [evidence/](evidence/) · Output/report: [publish/](publish/)
 
