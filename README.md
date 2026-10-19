@@ -8,7 +8,7 @@ Pages เป้าหมาย: https://wijitsinfangyen.github.io/engse203-stude
 
 12 LAB: 01–07 และ 09–13; Week08 สอบกลางภาค
 ดัดแปลงจากโครงการอ้างอิงที่ได้รับอนุญาตและ starter ของผู้สอน ไม่อ้างว่าหลักฐานเดิมเป็นผลงานของผู้เรียน ดู STUDENT_NEXT_STEPS.md และ HOW_TO_RUN.md
-ลิงก์ PR และ submission tags เว้นว่างจนกว่าจะสร้างและส่งจริง
+ปุ่ม Pull Request เชื่อม PR จริงของ LAB01–06; LAB ที่ยังไม่มี PR เปิดรายการตาม branch และยังไม่ระบุหมายเลข PR
 
 ```powershell
 node scripts/install-lab-deps.mjs
