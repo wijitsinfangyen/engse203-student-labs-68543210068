@@ -1,4 +1,4 @@
-Run: 2026-10-19T07:36:54.982Z
+Run: 2026-10-21T13:45:38.997Z
 Command: npm.cmd run check
 Directory: labs/week-12/source/api
 Exit: 0
@@ -7,23 +7,23 @@ Exit: 0
 > engse203-campus-api@3.1.0 check
 > node scripts/check-project.mjs
 
-GET / 200 1.488 ms - 127
-GET /api/requests 200 0.722 ms - 2563
-GET /api/requests/REQ-001 200 0.377 ms - 325
-GET /api/requests/REQ-999 404 0.248 ms - 65
-POST /api/requests 201 15.824 ms - 248
-POST /api/requests 400 0.503 ms - 514
-POST /api/requests 400 0.272 ms - 196
-POST /api/requests 400 0.186 ms - 180
-POST /api/requests 400 0.214 ms - 198
-DELETE /api/requests/REQ-009 204 6.521 ms - -
-DELETE /api/requests/REQ-999 404 0.380 ms - 65
-GET /api/requests 200 0.303 ms - 2563
-GET /api/unknown-path-xyz 404 0.145 ms - 74
-POST /api/requests 400 0.317 ms - 514
-GET /api/requests?status=pending 200 0.474 ms - 934
-PUT /api/requests/REQ-001 200 6.621 ms - 325
-PUT /api/requests/REQ-001 400 0.257 ms - 95
+GET / 200 2.079 ms - 127
+GET /api/requests 200 0.747 ms - 2563
+GET /api/requests/REQ-001 200 0.618 ms - 325
+GET /api/requests/REQ-999 404 0.410 ms - 65
+POST /api/requests 201 16.764 ms - 248
+POST /api/requests 400 0.351 ms - 514
+POST /api/requests 400 0.349 ms - 196
+POST /api/requests 400 0.285 ms - 180
+POST /api/requests 400 0.278 ms - 198
+DELETE /api/requests/REQ-009 204 6.137 ms - -
+DELETE /api/requests/REQ-999 404 0.368 ms - 65
+GET /api/requests 200 0.357 ms - 2563
+GET /api/unknown-path-xyz 404 0.187 ms - 74
+POST /api/requests 400 0.266 ms - 514
+GET /api/requests?status=pending 200 0.442 ms - 934
+PUT /api/requests/REQ-001 200 6.464 ms - 325
+PUT /api/requests/REQ-001 400 0.249 ms - 95
 
 ✅ STRUCT มีไฟล์ src/app.js
 ✅ STRUCT มีไฟล์ src/server.js

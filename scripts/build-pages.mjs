@@ -15,7 +15,7 @@ await fs.writeFile(path.join(docsRoot, ".nojekyll"), "", "utf8");
 
 const statusLabels = {
   draft: "Draft",
-  ready: "Code ready",
+  ready: "Published",
   submitted: "Submitted",
   revision: "Updated · pending review",
 };
@@ -56,17 +56,22 @@ for (const week of labs) {
   const prHref = prUrl || prListUrl;
   const prTitle = prUrl ? `ดู Pull Request ของ ${week}` : `ดูรายการ Pull Request ของ ${metadata.sourceRef || 'main'}`;
   const pageUrl = `${pagesBase}/labs/${week}/`;
+  const configuredDeploymentUrl = metadata.deploymentUrl || config.labDeployments?.[week] || '';
+  const deploymentUrl = validHttpUrl(configuredDeploymentUrl);
+  if (configuredDeploymentUrl && !deploymentUrl) throw new Error(`${week}: deployment URL must be an HTTP(S) URL`);
+  const resultUrl = deploymentUrl || pageUrl;
+  const resultHref = deploymentUrl || `labs/${week}/`;
   const sourceCount = (await meaningfulEntries(path.join(labRoot, "source"))).length;
-  const summary = { ...metadata, pageUrl, sourceUrl, hasPublish, sourceEntries: sourceCount };
+  const summary = { ...metadata, pageUrl, resultUrl, deploymentUrl, sourceUrl, hasPublish, sourceEntries: sourceCount };
   summaries.push(summary);
   await fs.writeFile(path.join(target, "submission.json"), `${JSON.stringify(summary, null, 2)}\n`, "utf8");
 
   cards.push(`<article class="lab-card" data-status="${escapeHtml(metadata.status)}">
     <div class="card-top"><span class="week">${escapeHtml(week)}</span><span class="status">${escapeHtml(statusLabels[metadata.status] ?? metadata.status)}</span></div>
     <h2>${escapeHtml(metadata.title)}</h2>
-    <p>Test: <strong>${escapeHtml(metadata.testStatus)}</strong> • ${metadata.resultType === 'report' || !hasPublish ? "Evidence report" : "Web output"}</p>
-    <div class="links"><a class="primary" href="labs/${escapeHtml(week)}/">View Result</a><a href="${escapeHtml(sourceUrl)}">Source</a><a href="${escapeHtml(prHref)}" title="${escapeHtml(prTitle)}">Pull Request</a></div>
-    <small>${metadata.status === 'submitted' ? 'Version' : 'Previous submission'}: ${escapeHtml(metadata.submissionTag || "none — not submitted")}</small>
+    <p>Test: <strong>${escapeHtml(metadata.testStatus)}</strong> • ${deploymentUrl ? "Live app" : metadata.resultType === 'report' || !hasPublish ? "Evidence report" : "Web output"}</p>
+    <div class="links"><a class="primary" href="${escapeHtml(resultHref)}">View Result</a><a href="${escapeHtml(sourceUrl)}">Source</a><a href="${escapeHtml(prHref)}" title="${escapeHtml(prTitle)}">Pull Request</a></div>
+    <small>${metadata.submissionTag ? `${metadata.status === 'submitted' ? 'Version' : 'Previous submission'}: ${escapeHtml(metadata.submissionTag)}` : `Branch: ${escapeHtml(metadata.sourceRef || 'main')}`}</small>
   </article>`);
 }
 

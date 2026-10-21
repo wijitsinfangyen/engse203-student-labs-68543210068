@@ -36,5 +36,14 @@
     "week-11": "",
     "week-12": "",
     "week-13": ""
+  },
+  "labDeployments": {
+    "week-11": "https://engse203-lab11-68543210068.onrender.com/",
+    "week-12": "https://engse203-lab12-68543210068.onrender.com/",
+    "week-13": "https://engse203-lab13-68543210068.onrender.com/"
+  },
+  "labApiBaseUrls": {
+    "week-07": "https://engse203-lab11-68543210068.onrender.com",
+    "week-10": "https://engse203-lab11-68543210068.onrender.com"
   }
 }

@@ -8,12 +8,14 @@
   "pullRequestUrl": "",
   "submissionTag": "",
   "testStatus": "pass",
-  "notes": "Automated tests passed. Personal testing and instructor review completed.",
+  "notes": "Local build and automated checks pass. Personal demonstration and instructor review completed.",
   "sourceRef": "lab/week-11",
   "resultType": "report",
   "previousPullRequestUrl": "",
   "pageUrl": "https://wijitsinfangyen.github.io/engse203-student-labs-68543210068/labs/week-11/",
+  "resultUrl": "https://engse203-lab11-68543210068.onrender.com/",
+  "deploymentUrl": "https://engse203-lab11-68543210068.onrender.com/",
   "sourceUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab%2Fweek-11/labs/week-11/source",
   "hasPublish": true,
-  "sourceEntries": 15
+  "sourceEntries": 16
 }

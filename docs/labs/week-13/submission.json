@@ -9,11 +9,13 @@
   "status": "ready",
   "testStatus": "pass",
   "sourceRef": "lab/week-13",
-  "notes": "Automated tests passed. Personal testing and instructor review completed.",
+  "notes": "Automated results are in evidence/. Personal testing and instructor review completed.",
   "resultType": "report",
   "previousPullRequestUrl": "",
   "pageUrl": "https://wijitsinfangyen.github.io/engse203-student-labs-68543210068/labs/week-13/",
+  "resultUrl": "https://engse203-lab13-68543210068.onrender.com/",
+  "deploymentUrl": "https://engse203-lab13-68543210068.onrender.com/",
   "sourceUrl": "https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab%2Fweek-13/labs/week-13/source",
   "hasPublish": true,
-  "sourceEntries": 19
+  "sourceEntries": 20
 }

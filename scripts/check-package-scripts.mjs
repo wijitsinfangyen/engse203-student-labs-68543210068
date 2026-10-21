@@ -5,6 +5,7 @@ import { ROOT } from './common.mjs';
 const results=[];
 function visit(folder){
  for(const entry of fs.readdirSync(folder,{withFileTypes:true})){
+  if(folder===path.join(ROOT,'labs')&&entry.isDirectory()&&!/^week-\d{2}$/.test(entry.name))continue;
   if(['node_modules','dist','publish','evidence','coverage','.git'].includes(entry.name))continue;
   const target=path.join(folder,entry.name);
   if(entry.isDirectory())visit(target);

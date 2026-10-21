@@ -39,11 +39,18 @@ for (const week of weeks) {
   }
   const publish = path.join(root, 'publish');
   await fs.mkdir(publish, { recursive: true });
-  const web = ['week-02','week-03','week-04','week-05'].includes(week);
+  const apiFrontend = ['week-07','week-10'].includes(week);
+  const web = ['week-02','week-03','week-04','week-05'].includes(week) || apiFrontend;
   metadata.resultType = web ? 'web' : 'report';
   await fs.writeFile(metadataPath, JSON.stringify(metadata, null, 2) + '\n');
   if (web) {
-    await fs.cp(path.join(root, 'source', 'dist'), publish, { recursive: true });
+    const buildRoot = apiFrontend ? path.join(root, 'source', 'frontend', 'dist') : path.join(root, 'source', 'dist');
+    await fs.cp(buildRoot, publish, { recursive: true });
+    if (apiFrontend) {
+      const entryPath = path.join(publish, 'index.html');
+      const entryHtml = await fs.readFile(entryPath, 'utf8');
+      await fs.writeFile(entryPath, entryHtml.replace(/\r+\n/g, '\n'));
+    }
   } else {
     await fs.writeFile(path.join(publish, 'index.html'), `<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${week} evidence</title><style>body{font:16px/1.65 Tahoma,sans-serif;background:#edf3f8;color:#172d43;margin:0}main{max-width:1000px;margin:24px auto;background:white;padding:28px;border-radius:14px}a{color:#1469a8}pre{overflow:auto;white-space:pre-wrap;background:#f1f5f9;padding:16px;font:13px/1.6 monospace}summary{cursor:pointer;padding:12px;background:#e6f0f7;margin-top:12px}h1{line-height:1.3}</style></head><body><main><a href="../../index.html">← LAB Portfolio</a><h1>${week}: ${escapeHtml(metadata.title)}</h1><p>${escapeHtml(metadata.notes)}</p><p>หน้านี้แสดงผลตรวจจากเครื่องจริง API และ SQLite ต้องรันด้วย Node.js ในเครื่อง; GitHub Pages ให้บริการได้เฉพาะไฟล์ static</p><p><a href="${repo}/tree/${branch}/labs/${week}/source">Source / run instructions</a> · <a href="${repo}/tree/${branch}/labs/${week}/evidence">Evidence</a></p>${sections.join('\n')}</main></body></html>`);
   }

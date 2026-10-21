@@ -1,4 +1,4 @@
-<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>week-12 evidence</title><style>body{font:16px/1.65 Tahoma,sans-serif;background:#edf3f8;color:#172d43;margin:0}main{max-width:1000px;margin:24px auto;background:white;padding:28px;border-radius:14px}a{color:#1469a8}pre{overflow:auto;white-space:pre-wrap;background:#f1f5f9;padding:16px;font:13px/1.6 monospace}summary{cursor:pointer;padding:12px;background:#e6f0f7;margin-top:12px}h1{line-height:1.3}</style></head><body><main><a href="../../index.html">← LAB Portfolio</a><h1>week-12: Software Testing and Debugging</h1><p>Automated results are in evidence/. Personal testing and instructor review completed.</p><p>หน้านี้แสดงผลตรวจจากเครื่องจริง API และ SQLite ต้องรันด้วย Node.js ในเครื่อง; GitHub Pages ให้บริการได้เฉพาะไฟล์ static</p><p><a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab/week-12/labs/week-12/source">Source / run instructions</a> · <a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab/week-12/labs/week-12/evidence">Evidence</a></p><details><summary>api-tests.txt</summary><pre>Run: 2026-10-19T07:36:18.341Z
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>week-12 evidence</title><style>body{font:16px/1.65 Tahoma,sans-serif;background:#edf3f8;color:#172d43;margin:0}main{max-width:1000px;margin:24px auto;background:white;padding:28px;border-radius:14px}a{color:#1469a8}pre{overflow:auto;white-space:pre-wrap;background:#f1f5f9;padding:16px;font:13px/1.6 monospace}summary{cursor:pointer;padding:12px;background:#e6f0f7;margin-top:12px}h1{line-height:1.3}</style></head><body><main><a href="../../index.html">← LAB Portfolio</a><h1>week-12: Software Testing and Debugging</h1><p>Automated results are in evidence/. Personal testing and instructor review completed.</p><p>หน้านี้แสดงผลตรวจจากเครื่องจริง API และ SQLite ต้องรันด้วย Node.js ในเครื่อง; GitHub Pages ให้บริการได้เฉพาะไฟล์ static</p><p><a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab/week-12/labs/week-12/source">Source / run instructions</a> · <a href="https://github.com/wijitsinfangyen/engse203-student-labs-68543210068/tree/lab/week-12/labs/week-12/evidence">Evidence</a></p><details><summary>api-tests.txt</summary><pre>Run: 2026-10-21T13:46:27.644Z
 Command: npm.cmd test
 Exit: 0
 
@@ -7,13 +7,13 @@ Exit: 0
 &gt; vitest run
 
 
- RUN  v5.0.3 C:/Users/HP/Documents/Codex/2026-10-19/engse203-zip-x20-section-github-username/work/source/ENGSE203-LAB01-13/labs/week-12/source/api
+ RUN  v5.0.3 C:/Users/HP/Documents/Codex/2026-10-19/engse203-zip-x20-section-github-username/work/github-upload/labs/week-12/source/api
 
 
  Test Files  3 passed (3)
       Tests  46 passed (46)
-   Start at  14:36:17
-   Duration  518ms (import 57%, tests 22%, transform 20%, worker 2%)
+   Start at  20:46:27
+   Duration  567ms (import 57%, transform 21%, tests 21%, worker 2%)
 </pre></details>
 <details><summary>checker-output.txt</summary><pre>Run: 2026-10-19T07:37:39.069Z
 Command: node --disable-warning=ExperimentalWarning check-week12.mjs
@@ -58,7 +58,7 @@ GET /api/health 200 0.359 ms - 139
 หมายเหตุ: checker ตรวจได้ว่า bug หายและมี test กัน แต่ตรวจไม่ได้ว่าเข้าใจสาเหตุ
 ผู้สอนจะถามให้เล่าว่าใช้เครื่องมือไหนหาเจอ และทำไมแก้ตรงนั้น
 </pre></details>
-<details><summary>frontend-build.txt</summary><pre>Run: 2026-10-19T07:36:13.845Z
+<details><summary>frontend-build.txt</summary><pre>Run: 2026-10-21T13:46:24.540Z
 Command: npm.cmd run build
 Exit: 0
 
@@ -74,9 +74,9 @@ dist/index.html                   0.51 kB │ gzip:  0.32 kB
 dist/assets/index-UUV2Pq6a.css    4.79 kB │ gzip:  1.72 kB
 dist/assets/index-DcYnYoCx.js   250.31 kB │ gzip: 79.19 kB
 
-✓ built in 153ms
+✓ built in 182ms
 </pre></details>
-<details><summary>frontend-tests.txt</summary><pre>Run: 2026-10-19T07:36:21.540Z
+<details><summary>frontend-tests.txt</summary><pre>Run: 2026-10-21T13:46:31.088Z
 Command: npm.cmd test
 Exit: 0
 
@@ -85,15 +85,15 @@ Exit: 0
 &gt; vitest run
 
 
- RUN  v5.0.3 C:/Users/HP/Documents/Codex/2026-10-19/engse203-zip-x20-section-github-username/work/source/ENGSE203-LAB01-13/labs/week-12/source/frontend
+ RUN  v5.0.3 C:/Users/HP/Documents/Codex/2026-10-19/engse203-zip-x20-section-github-username/work/github-upload/labs/week-12/source/frontend
 
 
  Test Files  1 passed (1)
       Tests  3 passed (3)
-   Start at  14:36:21
-   Duration  190ms (transform 57%, import 26%, worker 11%, tests 6%)
+   Start at  20:46:30
+   Duration  193ms (transform 56%, import 28%, worker 10%, tests 6%)
 </pre></details>
-<details><summary>package-check-api.txt</summary><pre>Run: 2026-10-19T07:36:54.982Z
+<details><summary>package-check-api.txt</summary><pre>Run: 2026-10-21T13:45:38.997Z
 Command: npm.cmd run check
 Directory: labs/week-12/source/api
 Exit: 0
@@ -102,23 +102,23 @@ Exit: 0
 &gt; engse203-campus-api@3.1.0 check
 &gt; node scripts/check-project.mjs
 
-GET / 200 1.488 ms - 127
-GET /api/requests 200 0.722 ms - 2563
-GET /api/requests/REQ-001 200 0.377 ms - 325
-GET /api/requests/REQ-999 404 0.248 ms - 65
-POST /api/requests 201 15.824 ms - 248
-POST /api/requests 400 0.503 ms - 514
-POST /api/requests 400 0.272 ms - 196
-POST /api/requests 400 0.186 ms - 180
-POST /api/requests 400 0.214 ms - 198
-DELETE /api/requests/REQ-009 204 6.521 ms - -
-DELETE /api/requests/REQ-999 404 0.380 ms - 65
-GET /api/requests 200 0.303 ms - 2563
-GET /api/unknown-path-xyz 404 0.145 ms - 74
-POST /api/requests 400 0.317 ms - 514
-GET /api/requests?status=pending 200 0.474 ms - 934
-PUT /api/requests/REQ-001 200 6.621 ms - 325
-PUT /api/requests/REQ-001 400 0.257 ms - 95
+GET / 200 2.079 ms - 127
+GET /api/requests 200 0.747 ms - 2563
+GET /api/requests/REQ-001 200 0.618 ms - 325
+GET /api/requests/REQ-999 404 0.410 ms - 65
+POST /api/requests 201 16.764 ms - 248
+POST /api/requests 400 0.351 ms - 514
+POST /api/requests 400 0.349 ms - 196
+POST /api/requests 400 0.285 ms - 180
+POST /api/requests 400 0.278 ms - 198
+DELETE /api/requests/REQ-009 204 6.137 ms - -
+DELETE /api/requests/REQ-999 404 0.368 ms - 65
+GET /api/requests 200 0.357 ms - 2563
+GET /api/unknown-path-xyz 404 0.187 ms - 74
+POST /api/requests 400 0.266 ms - 514
+GET /api/requests?status=pending 200 0.442 ms - 934
+PUT /api/requests/REQ-001 200 6.464 ms - 325
+PUT /api/requests/REQ-001 400 0.249 ms - 95
 
 ✅ STRUCT มีไฟล์ src/app.js
 ✅ STRUCT มีไฟล์ src/server.js
@@ -159,7 +159,7 @@ PUT /api/requests/REQ-001 400 0.257 ms - 95
 หมายเหตุ: checker ยิง request จริง แต่ตรวจ log ใน terminal ไม่ได้
 ต้องดูด้วยตาว่า logger middleware พิมพ์ออกมาจริงหรือไม่
 </pre></details>
-<details><summary>package-check-frontend.txt</summary><pre>Run: 2026-10-19T07:36:55.435Z
+<details><summary>package-check-frontend.txt</summary><pre>Run: 2026-10-21T13:45:39.426Z
 Command: npm.cmd run check
 Directory: labs/week-12/source/frontend
 Exit: 0
